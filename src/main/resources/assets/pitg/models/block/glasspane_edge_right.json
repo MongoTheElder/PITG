@@ -1,0 +1,16 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "edge": "block/glass_pane_top",
+    "pane": "block/glass",
+    "particle": "#pane"
+  },
+  "elements": [
+    { "from": [ 14, 0, 0 ],
+      "to": [ 16, 16, 2 ],
+      "faces": {
+        "east":  { "uv": [  7,  0,  9, 16 ], "texture": "#edge", "cullface": "west" }
+      }
+    }
+  ]
+}

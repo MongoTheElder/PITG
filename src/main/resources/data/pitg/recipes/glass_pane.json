@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pitg:glasspane"
+    }
+  ],
+  "result": {
+    "item": "minecraft:glass_pane",
+    "count": 1
+  }
+}

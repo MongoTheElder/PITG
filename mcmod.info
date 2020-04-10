@@ -1,0 +1,10 @@
+[{
+  "modid": "pitg",
+  "name": "Pane In The Glass",
+  "description": Glass panes aligned at the edge of blocks",
+  "version": ${version},
+  "mcversion": ${mcversion},
+  "logoFile": "assets/pitg/textures/logo.png",
+  "authorList": ["MongoTheElder"],
+  "credits": "Thanks to the Forge team for making this possible"
+}]

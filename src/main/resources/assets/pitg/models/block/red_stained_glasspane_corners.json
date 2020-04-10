@@ -1,0 +1,17 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "edge": "block/red_stained_glass_pane_top",
+    "pane": "block/red_stained_glass",
+    "particle": "#pane"
+  },
+  "elements": [
+    { "from": [ 0, 0, 0 ],
+      "to": [ 2, 16, 2 ],
+      "faces": {
+        "down":  { "uv": [  7,  0,  9, 2 ], "texture": "#edge", "rotation": 90 },
+        "up":    { "uv": [  7,  0,  9, 2 ], "texture": "#edge", "rotation": 90 }
+      }
+    }
+  ]
+}
