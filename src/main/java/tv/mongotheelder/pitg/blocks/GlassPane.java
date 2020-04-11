@@ -200,7 +200,6 @@ public class GlassPane extends Block implements IWaterLoggable {
 
         }
 
-        LOGGER.info("Top: " + clickedTop + "  Bottom: " + clickedBottom + "  North: " + clickedNorth + "  West: " + clickedWest + "  South: " + clickedSouth + "  East: " + clickedEast);
         IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
         return this.getDefaultState()
                 .with(NORTH, clickedNorth)
