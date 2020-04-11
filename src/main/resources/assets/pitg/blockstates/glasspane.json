@@ -1,64 +1,164 @@
 {
   "multipart": [
-    { "when": { "north": true },
-      "apply": { "model": "pitg:block/glasspane" }
-    },
-    { "when": { "east": true },
-      "apply": { "model": "pitg:block/glasspane", "y": 90 }
-    },
-    { "when": { "south": true },
-      "apply": { "model": "pitg:block/glasspane", "y": 180 }
-    },
-    { "when": { "west": true },
-      "apply": { "model": "pitg:block/glasspane", "y": 270 }
+    {
+      "when": {
+        "north": true
+      },
+      "apply": {
+        "model": "pitg:block/glasspane"
+      }
     },
     {
-      "when": { "north": true, "west": false },
-      "apply": { "model": "pitg:/block/glasspane_edge_left", "y": 0 }
+      "when": {
+        "east": true
+      },
+      "apply": {
+        "model": "pitg:block/glasspane",
+        "y": 90
+      }
     },
     {
-      "when": { "north": true, "east": false },
-      "apply": { "model": "pitg:/block/glasspane_edge_right", "y": 0 }
+      "when": {
+        "south": true
+      },
+      "apply": {
+        "model": "pitg:block/glasspane",
+        "y": 180
+      }
     },
     {
-      "when": { "south": true, "west": false },
-      "apply": { "model": "pitg:/block/glasspane_edge_right", "y": 180 }
+      "when": {
+        "west": true
+      },
+      "apply": {
+        "model": "pitg:block/glasspane",
+        "y": 270
+      }
     },
     {
-      "when": { "south": true, "east": false },
-      "apply": { "model": "pitg:/block/glasspane_edge_left", "y": 180 }
+      "when": {
+        "north": true,
+        "west": false
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_edge_left"
+      }
     },
     {
-      "when": { "east": true, "south": false },
-      "apply": { "model": "pitg:/block/glasspane_edge_right", "y": 90 }
+      "when": {
+        "north": true,
+        "east": false
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_edge_right"
+      }
     },
     {
-      "when": { "east": true, "north": false },
-      "apply": { "model": "pitg:/block/glasspane_edge_left", "y": 90 }
+      "when": {
+        "west": false,
+        "south": true
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_edge_right",
+        "y": 180
+      }
     },
     {
-      "when": { "west": true, "south": false },
-      "apply": { "model": "pitg:/block/glasspane_edge_left", "y": 270 }
+      "when": {
+        "east": false,
+        "south": true
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_edge_left",
+        "y": 180
+      }
     },
     {
-      "when": { "west": true, "north": false },
-      "apply": { "model": "pitg:/block/glasspane_edge_right", "y": 270 }
+      "when": {
+        "east": true,
+        "south": false
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_edge_right",
+        "y": 90
+      }
     },
     {
-      "when": {"OR": [ { "north": true }, { "west":  true }]},
-      "apply": { "model":  "pitg:/block/glasspane_corners", "y":  0 }
+      "when": {
+        "north": false,
+        "east": true
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_edge_left",
+        "y": 90
+      }
     },
     {
-      "when": {"OR": [ { "north": true }, { "east":  true }]},
-      "apply": { "model":  "pitg:/block/glasspane_corners", "y":  90 }
+      "when": {
+        "west": true,
+        "south": false
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_edge_left",
+        "y": 270
+      }
     },
     {
-      "when": {"OR": [ { "south": true }, { "west":  true }]},
-      "apply": { "model":  "pitg:/block/glasspane_corners", "y":  270 }
+      "when": {
+        "west": true,
+        "north": false
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_edge_right",
+        "y": 270
+      }
+    },
+   {
+      "when": {
+        "OR": 
+          [{ "north": true},{
+          "west": true}]
+        
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_corners"
+      }
     },
     {
-      "when": {"OR": [ { "south": true }, { "east":  true }]},
-      "apply": { "model":  "pitg:/block/glasspane_corners", "y":  180 }
+      "when": {
+        "OR": [{
+          "north": true},{
+          "east": true}]
+        
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_corners",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "OR": [{
+          "west": true},{
+          "south": true}]
+        
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_corners",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "OR": [{
+          "east": true},{
+          "south": true}]
+        
+      },
+      "apply": {
+        "model": "pitg:block/glasspane_corners",
+        "y": 180
+      }
     }
   ]
 }

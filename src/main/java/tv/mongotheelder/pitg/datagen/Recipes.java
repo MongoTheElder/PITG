@@ -1,5 +1,7 @@
 package tv.mongotheelder.pitg.datagen;
 
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -14,19 +16,37 @@ public class Recipes extends RecipeProvider {
         super(generatorIn);
     }
 
+    protected void glassPaneRecipe(Consumer<IFinishedRecipe> consumer, Block result, Block ingredient, String group) {
+        ShapelessRecipeBuilder.shapelessRecipe(result)
+                .addIngredient(ingredient, 1)
+                .addCriterion("has_glass", InventoryChangeTrigger.Instance.forItems(Blocks.GLASS))
+                .setGroup(group)
+                .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ingredient)
+                .addIngredient(result, 1)
+                .addCriterion("has_glass", InventoryChangeTrigger.Instance.forItems(Blocks.GLASS))
+                .setGroup(group)
+                .build(consumer);
+    }
+
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
-        ShapelessRecipeBuilder.shapelessRecipe(Registration.GLASS_PANE.get())
-                .addIngredient(Blocks.GLASS_PANE)
-                .build(consumer);
-        ShapelessRecipeBuilder.shapelessRecipe(Blocks.GLASS_PANE)
-                .addIngredient(Registration.GLASS_PANE.get())
-                .build(consumer);
-        ShapelessRecipeBuilder.shapelessRecipe(Registration.RED_STAINED_GLASS_PANE.get())
-                .addIngredient(Blocks.RED_STAINED_GLASS_PANE)
-                .build(consumer);
-        ShapelessRecipeBuilder.shapelessRecipe(Blocks.RED_STAINED_GLASS_PANE)
-                .addIngredient(Registration.RED_STAINED_GLASS_PANE.get())
-                .build(consumer);
+        glassPaneRecipe(consumer, Registration.GLASS_PANE.get(), Blocks.GLASS_PANE, "glass_pane");
+        glassPaneRecipe(consumer, Registration.RED_STAINED_GLASS_PANE.get(), Blocks.RED_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.WHITE_STAINED_GLASS_PANE.get(), Blocks.WHITE_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.BLUE_STAINED_GLASS_PANE.get(), Blocks.BLUE_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.ORANGE_STAINED_GLASS_PANE.get(), Blocks.ORANGE_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.MAGENTA_STAINED_GLASS_PANE.get(), Blocks.MAGENTA_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.LIGHT_BLUE_STAINED_GLASS_PANE.get(), Blocks.LIGHT_BLUE_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.YELLOW_STAINED_GLASS_PANE.get(), Blocks.YELLOW_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.LIME_STAINED_GLASS_PANE.get(), Blocks.LIME_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.PINK_STAINED_GLASS_PANE.get(), Blocks.PINK_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.GRAY_STAINED_GLASS_PANE.get(), Blocks.GRAY_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.LIGHT_GRAY_STAINED_GLASS_PANE.get(), Blocks.LIGHT_GRAY_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.CYAN_STAINED_GLASS_PANE.get(), Blocks.CYAN_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.PURPLE_STAINED_GLASS_PANE.get(), Blocks.PURPLE_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.BROWN_STAINED_GLASS_PANE.get(), Blocks.BROWN_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.GREEN_STAINED_GLASS_PANE.get(), Blocks.GREEN_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.BLACK_STAINED_GLASS_PANE.get(), Blocks.BLACK_STAINED_GLASS_PANE, "stained_glass_pane");
     }
 }

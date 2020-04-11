@@ -1,24 +1,62 @@
 {
   "textures": {
-    "edge": "block/glass_pane_top",
     "pane": "block/glass",
+    "edge": "block/glass_pane_top",
     "particle": "#pane"
   },
-  "ambientocclusion": false,
   "elements": [
-    { "from": [ 0, 0, 0 ],
-      "to": [ 16, 16, 2 ],
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        2
+      ],
       "faces": {
-        "north": { "uv": [  0,  0, 16, 16 ], "texture": "#pane", "rotation": 90 },
-        "south": { "uv": [  0,  0, 16, 16 ], "texture": "#pane" }
+        "north": {
+          "texture": "#pane",
+          "rotation": 90
+        },
+        "south": {
+          "texture": "#pane"
+        }
       }
     },
     {
-      "from": [ 2, 0, 0 ],
-      "to": [ 14, 16, 2],
+      "from": [
+        2,
+        0,
+        0
+      ],
+      "to": [
+        14,
+        16,
+        2
+      ],
       "faces": {
-        "down": { "uv": [ 7, 2, 9, 14 ], "texture": "#edge", "rotation": 90 },
-        "up":   { "uv": [ 7, 2, 9, 14 ], "texture": "#edge", "rotation": 90
+        "down": {
+          "texture": "#edge",
+          "uv": [
+            7.0,
+            2.0,
+            9.0,
+            14.0
+          ],
+          "rotation": 90
+        },
+        "up": {
+          "texture": "#edge",
+          "uv": [
+            7.0,
+            2.0,
+            9.0,
+            14.0
+          ],
+          "rotation": 90
         }
       }
     }

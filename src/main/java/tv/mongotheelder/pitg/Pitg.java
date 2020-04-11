@@ -13,6 +13,8 @@ import tv.mongotheelder.pitg.setup.*;
 public class Pitg {
     public static final String MODID = "pitg";
 
+    public static final String[] COLORS = { "", "white", "red", "blue", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "light_gray", "cyan", "purple", "brown", "green", "black" };
+
     public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
 
     private static final Logger LOGGER = LogManager.getLogger();

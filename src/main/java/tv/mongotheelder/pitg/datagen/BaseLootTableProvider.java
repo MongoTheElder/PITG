@@ -41,6 +41,7 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
         LootPool.Builder builder = LootPool.builder()
                 .name(name)
                 .rolls(ConstantRange.of(1))
+                .addEntry(ItemLootEntry.builder(block))
                 .acceptCondition(MatchTool.builder(ItemPredicate.Builder.create()
                         .enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1)))))
                 ;
