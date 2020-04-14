@@ -58,5 +58,12 @@ public class Recipes extends RecipeProvider {
                 .setGroup("tools")
                 .addCriterion("glass", InventoryChangeTrigger.Instance.forItems(Blocks.GLASS))
                 .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(Registration.GREEN_DYE_ITEM.get())
+                .addIngredient(Tags.Items.DYES_BLUE)
+                .addIngredient(Tags.Items.DYES_YELLOW)
+                .setGroup("green_dye")
+                .addCriterion("has_yellow_dye", InventoryChangeTrigger.Instance.forItems(Items.YELLOW_DYE))
+                .addCriterion("has_blue_dye", InventoryChangeTrigger.Instance.forItems(Items.BLUE_DYE))
+                .build(consumer);
     }
 }

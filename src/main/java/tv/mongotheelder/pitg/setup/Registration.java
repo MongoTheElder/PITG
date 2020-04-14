@@ -3,9 +3,7 @@ package tv.mongotheelder.pitg.setup;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -77,4 +75,7 @@ public class Registration {
     public static final RegistryObject<Item> BLACK_STAINED_GLASS_PANE_ITEM = ITEMS.register("black_stained_glasspane", () -> new BlockItem(BLACK_STAINED_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
 
     public static final RegistryObject<Item> GLAZING_TOOL_ITEM = ITEMS.register("glazing_tool", () -> new GlazingTool(new Item.Properties().group(ModSetup.ITEM_GROUP).maxStackSize(1)));
+
+    // Alternate green dye item - I hate being forced to find a desert biome to get green dye
+    public static final RegistryObject<Item> GREEN_DYE_ITEM = ITEMS.register("green_dye", () -> new DyeItem(DyeColor.GREEN, (new Item.Properties()).group(ModSetup.ITEM_GROUP)));
 }
