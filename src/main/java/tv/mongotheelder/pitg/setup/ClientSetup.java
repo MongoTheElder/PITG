@@ -11,8 +11,6 @@ import tv.mongotheelder.pitg.Pitg;
 public class ClientSetup {
 
     public static void init(final FMLClientSetupEvent event) {
-        //MinecraftForge.EVENT_BUS.addListener(InWorldRenderer::render);
-        //MinecraftForge.EVENT_BUS.addListener(AfterLivingRenderer::render);
         RenderTypeLookup.setRenderLayer(Registration.GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(Registration.RED_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(Registration.WHITE_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
