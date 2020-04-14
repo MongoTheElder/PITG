@@ -11,7 +11,6 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -24,11 +23,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class GlassPane extends Block implements IWaterLoggable {
-    public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
-    public static final BooleanProperty EAST = BlockStateProperties.EAST;
-    public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
-    public static final BooleanProperty WEST = BlockStateProperties.WEST;
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty NORTH = BooleanProperty.create("north");
+    public static final BooleanProperty EAST = BooleanProperty.create("east");
+    public static final BooleanProperty SOUTH = BooleanProperty.create("south");
+    public static final BooleanProperty WEST = BooleanProperty.create("west");
+    public static final BooleanProperty WATERLOGGED = BooleanProperty.create("waterlogged");
     public static final int NORTH_MASK = 0b0001;
     public static final int WEST_MASK = 0b0010;
     public static final int SOUTH_MASK = 0b0100;
@@ -88,10 +87,12 @@ public class GlassPane extends Block implements IWaterLoggable {
         return !state.get(WATERLOGGED);
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.shapes[this.getIndex(state)];
     }
 
+    @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.collisionShapes[this.getIndex(state)];
     }
@@ -132,9 +133,18 @@ public class GlassPane extends Block implements IWaterLoggable {
             case CLOCKWISE_180:
                 return state.with(NORTH, state.get(SOUTH)).with(EAST, state.get(WEST)).with(SOUTH, state.get(NORTH)).with(WEST, state.get(EAST));
             case COUNTERCLOCKWISE_90:
-                return state.with(NORTH, state.get(EAST)).with(EAST, state.get(SOUTH)).with(SOUTH, state.get(WEST)).with(WEST, state.get(NORTH));
+                // OK, this is a bit of a hack: COUNTERCLOCKWISE is used to rotate the pane 90 keeping the same style
+                // (N, E, S, W) or (NE, SE, SW, NW)
+                return state.with(NORTH, state.get(WEST))
+                        .with(EAST, state.get(NORTH))
+                        .with(SOUTH, state.get(EAST))
+                        .with(WEST, state.get(SOUTH));
             case CLOCKWISE_90:
-                return state.with(NORTH, state.get(WEST)).with(EAST, state.get(NORTH)).with(SOUTH, state.get(EAST)).with(WEST, state.get(SOUTH));
+                // Rotate through all 8 facing states (N, NE, E, SE, S, SW, W, NW)
+                return state.with(NORTH, (state.get(WEST) || state.get(NORTH)) && !(state.get(EAST) || state.get(SOUTH)))
+                        .with(EAST, (state.get(EAST) || state.get(NORTH)) && !(state.get(WEST) || state.get(SOUTH)))
+                        .with(SOUTH, (state.get(EAST) || state.get(SOUTH)) && !(state.get(WEST) || state.get(NORTH)))
+                        .with(WEST, (state.get(WEST) || state.get(SOUTH)) && !(state.get(EAST) || state.get(NORTH)));
             default:
                 return state;
         }
@@ -197,7 +207,6 @@ public class GlassPane extends Block implements IWaterLoggable {
                     LOGGER.info("Center click was not able to determine facing direction");
                     clickedNorth = true;
             }
-
         }
 
         IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
@@ -214,5 +223,5 @@ public class GlassPane extends Block implements IWaterLoggable {
         builder.add(NORTH, EAST, WEST, SOUTH, WATERLOGGED);
     }
 
-    public boolean isTransparent(BlockState state) { return true; }
+    //public boolean isTransparent(BlockState state) { return true; }
 }

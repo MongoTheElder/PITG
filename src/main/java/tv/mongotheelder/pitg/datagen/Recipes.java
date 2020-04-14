@@ -7,6 +7,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.Items;
+import net.minecraftforge.common.Tags;
 import tv.mongotheelder.pitg.setup.Registration;
 
 import java.util.function.Consumer;
@@ -43,10 +45,18 @@ public class Recipes extends RecipeProvider {
         glassPaneRecipe(consumer, Registration.PINK_STAINED_GLASS_PANE.get(), Blocks.PINK_STAINED_GLASS_PANE, "stained_glass_pane");
         glassPaneRecipe(consumer, Registration.GRAY_STAINED_GLASS_PANE.get(), Blocks.GRAY_STAINED_GLASS_PANE, "stained_glass_pane");
         glassPaneRecipe(consumer, Registration.LIGHT_GRAY_STAINED_GLASS_PANE.get(), Blocks.LIGHT_GRAY_STAINED_GLASS_PANE, "stained_glass_pane");
-        glassPaneRecipe(consumer, Registration.CYAN_STAINED_GLASS_PANE.get(), Blocks.CYAN_STAINED_GLASS_PANE, "stained_glass_pane");
+        glassPaneRecipe(consumer, Registration.CYAN_STAINED_GLASS_PANE.get(), Blocks.CYAN_STAINED_GLASS_PANE, "stainedglass_pane");
         glassPaneRecipe(consumer, Registration.PURPLE_STAINED_GLASS_PANE.get(), Blocks.PURPLE_STAINED_GLASS_PANE, "stained_glass_pane");
         glassPaneRecipe(consumer, Registration.BROWN_STAINED_GLASS_PANE.get(), Blocks.BROWN_STAINED_GLASS_PANE, "stained_glass_pane");
         glassPaneRecipe(consumer, Registration.GREEN_STAINED_GLASS_PANE.get(), Blocks.GREEN_STAINED_GLASS_PANE, "stained_glass_pane");
         glassPaneRecipe(consumer, Registration.BLACK_STAINED_GLASS_PANE.get(), Blocks.BLACK_STAINED_GLASS_PANE, "stained_glass_pane");
+
+        ShapelessRecipeBuilder.shapelessRecipe(Registration.GLAZING_TOOL_ITEM.get())
+                .addIngredient(Items.IRON_INGOT)
+                .addIngredient(Tags.Items.DYES_GREEN)
+                .addIngredient(Tags.Items.GLASS_PANES)
+                .setGroup("tools")
+                .addCriterion("glass", InventoryChangeTrigger.Instance.forItems(Blocks.GLASS))
+                .build(consumer);
     }
 }

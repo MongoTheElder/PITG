@@ -12,6 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import tv.mongotheelder.pitg.blocks.GlassPane;
 import tv.mongotheelder.pitg.blocks.StainedGlassPane;
+import tv.mongotheelder.pitg.items.GlazingTool;
 
 import static tv.mongotheelder.pitg.Pitg.MODID;
 
@@ -75,4 +76,5 @@ public class Registration {
     public static final RegistryObject<StainedGlassPane> BLACK_STAINED_GLASS_PANE = BLOCKS.register("black_stained_glasspane", () -> new StainedGlassPane(DyeColor.BLACK, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
     public static final RegistryObject<Item> BLACK_STAINED_GLASS_PANE_ITEM = ITEMS.register("black_stained_glasspane", () -> new BlockItem(BLACK_STAINED_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
 
+    public static final RegistryObject<Item> GLAZING_TOOL_ITEM = ITEMS.register("glazing_tool", () -> new GlazingTool(new Item.Properties().group(ModSetup.ITEM_GROUP).maxStackSize(1)));
 }
