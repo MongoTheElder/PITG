@@ -1,4 +1,5 @@
 {
+  "ambientocclusion": false,
   "textures": {
     "pane": "block/purple_stained_glass",
     "edge": "block/purple_stained_glass_pane_top",

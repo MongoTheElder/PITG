@@ -1,4 +1,5 @@
 {
+  "ambientocclusion": false,
   "textures": {
     "pane": "block/glass",
     "edge": "block/glass_pane_top",
