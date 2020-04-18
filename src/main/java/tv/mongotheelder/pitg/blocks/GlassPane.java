@@ -35,14 +35,14 @@ public class GlassPane extends Block implements IWaterLoggable {
 
     protected final VoxelShape[] shapes;
     protected final VoxelShape[] collisionShapes;
-    private final Object2IntMap<BlockState> indexHash = new Object2IntOpenHashMap<>();
-    private static final double PANE_WIDTH = 16.0;
-    private static final double PANE_THICKNESS = 2.0;
-    private static final double PANE_HEIGHT = 16.0;
+    protected final Object2IntMap<BlockState> indexHash = new Object2IntOpenHashMap<>();
+    protected static final double PANE_WIDTH = 16.0;
+    protected static final double PANE_THICKNESS = 2.0;
+    protected static final double PANE_HEIGHT = 16.0;
 
-    private static final double CORNER_HITBOX_SIZE = 0.25;
+    protected static final double CORNER_HITBOX_SIZE = 0.25;
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    protected static final Logger LOGGER = LogManager.getLogger();
 
     public GlassPane(Properties properties) {
         super(properties);
@@ -88,31 +88,33 @@ public class GlassPane extends Block implements IWaterLoggable {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.shapes[this.getIndex(state)];
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.collisionShapes[this.getIndex(state)];
     }
 
     protected int getIndex(BlockState state) {
-        return this.indexHash.computeIntIfAbsent(state, (p_223007_0_) -> {
+        return this.indexHash.computeIntIfAbsent(state, (blockState) -> {
             int i = 0;
-            if (p_223007_0_.get(NORTH)) {
+            if (blockState.get(NORTH)) {
                 i |= NORTH_MASK;
             }
 
-            if (p_223007_0_.get(EAST)) {
+            if (blockState.get(EAST)) {
                 i |= EAST_MASK;
             }
 
-            if (p_223007_0_.get(SOUTH)) {
+            if (blockState.get(SOUTH)) {
                 i |= SOUTH_MASK;
             }
 
-            if (p_223007_0_.get(WEST)) {
+            if (blockState.get(WEST)) {
                 i |= WEST_MASK;
             }
 
@@ -120,14 +122,20 @@ public class GlassPane extends Block implements IWaterLoggable {
         });
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
     public IFluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
     public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         return false;
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
     public BlockState rotate(BlockState state, Rotation rot) {
         switch (rot) {
             case CLOCKWISE_180:
@@ -150,6 +158,8 @@ public class GlassPane extends Block implements IWaterLoggable {
         }
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         switch (mirrorIn) {
             case LEFT_RIGHT:
@@ -174,9 +184,6 @@ public class GlassPane extends Block implements IWaterLoggable {
 
         Direction direction = context.getFace();
         BlockPos blockpos = context.getPos();
-
-        boolean clickedTop = ((context.getHitVec().y - (double) blockpos.getY()) >= (1.0D - CORNER_HITBOX_SIZE));
-        boolean clickedBottom = ((context.getHitVec().y - (double) blockpos.getY()) <= CORNER_HITBOX_SIZE);
 
         // Determine which sides to include based on click location
         // If placed on the vertical face of a block, suppress including the matching face unless center clicked
