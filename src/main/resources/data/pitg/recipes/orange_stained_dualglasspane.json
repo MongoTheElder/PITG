@@ -3,10 +3,10 @@
   "group": "stained_glass_pane",
   "ingredients": [
     {
-      "item": "minecraft:orange_stained_glass_pane"
+      "item": "pitg:orange_stained_glasspane"
     },
     {
-      "item": "minecraft:orange_stained_glass_pane"
+      "item": "pitg:orange_stained_glasspane"
     }
   ],
   "result": {
