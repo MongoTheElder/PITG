@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "pitg:item/dual_light_blue_stained_glasspane"
+  }
+}

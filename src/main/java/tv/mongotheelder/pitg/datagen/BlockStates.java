@@ -5,6 +5,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
 import tv.mongotheelder.pitg.Pitg;
+import tv.mongotheelder.pitg.blocks.DualGlassPane;
 import tv.mongotheelder.pitg.blocks.GlassPane;
 import tv.mongotheelder.pitg.setup.Registration;
 
@@ -98,7 +99,30 @@ public class BlockStates extends BlockStateProvider {
 
     }
 
-    private void buildModels(GlassPane block, String color) {
+    public void blockstateDualGlassPane(GlassPane block, BlockModelBuilder side, BlockModelBuilder left, BlockModelBuilder right, BlockModelBuilder corners) {
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(block);
+        builder.part().modelFile(side).addModel().useOr().condition(DualGlassPane.NORTH, true).useOr().condition(DualGlassPane.SOUTH, true);
+        builder.part().modelFile(side).rotationY(90).addModel().useOr().condition(DualGlassPane.EAST, true).useOr().condition(DualGlassPane.WEST, true);
+        builder.part().modelFile(side).rotationY(180).addModel().useOr().condition(DualGlassPane.NORTH, true).useOr().condition(DualGlassPane.SOUTH, true);
+        builder.part().modelFile(side).rotationY(270).addModel().useOr().condition(DualGlassPane.EAST, true).useOr().condition(DualGlassPane.WEST, true);
+
+        builder.part().modelFile(left).addModel().condition(DualGlassPane.WEST, false).condition(DualGlassPane.EAST, false);
+        builder.part().modelFile(left).rotationY(180).addModel().condition(DualGlassPane.WEST, false).condition(DualGlassPane.EAST, false);
+        builder.part().modelFile(left).rotationY(90).addModel().condition(DualGlassPane.NORTH, false).condition(DualGlassPane.SOUTH, false);
+        builder.part().modelFile(left).rotationY(270).addModel().condition(DualGlassPane.NORTH, false).condition(DualGlassPane.SOUTH, false);
+
+        builder.part().modelFile(right).addModel().condition(DualGlassPane.EAST, false).condition(DualGlassPane.WEST, false);
+        builder.part().modelFile(right).rotationY(180).addModel().condition(DualGlassPane.EAST, false).condition(DualGlassPane.WEST, false);
+        builder.part().modelFile(right).rotationY(90).addModel().condition(DualGlassPane.NORTH, false).condition(DualGlassPane.SOUTH, false);
+        builder.part().modelFile(right).rotationY(270).addModel().condition(DualGlassPane.NORTH, false).condition(DualGlassPane.SOUTH, false);
+
+        builder.part().modelFile(corners).addModel();
+        builder.part().modelFile(corners).rotationY(90).addModel();
+        builder.part().modelFile(corners).rotationY(270).addModel();
+        builder.part().modelFile(corners).rotationY(180).addModel();
+    }
+
+    private void buildGlassPaneModels(GlassPane block, String color) {
         String path = BLOCK_FOLDER + "/" + (color.equals("") ? "" : color + "_stained_");
         BlockModelBuilder side_model = models().getBuilder(path + "glasspane");
         BlockModelBuilder left_model = models().getBuilder(path + "glasspane_edge_left");
@@ -108,28 +132,55 @@ public class BlockStates extends BlockStateProvider {
         modelGlassPaneCorners(corner_model, path);
         modelGlassPaneLeftEdge(left_model, path);
         modelGlassPaneRightEdge(right_model, path);
-        //blockstateGlassPane(block, side_model, left_model, right_model, corner_model);
+        blockstateGlassPane(block, side_model, left_model, right_model, corner_model);
+    }
+
+    private void buildDualGlassPaneModels(GlassPane block, String color) {
+        String path = BLOCK_FOLDER + "/" + (color.equals("") ? "" : color + "_stained_");
+        BlockModelBuilder side_model = models().getBuilder(path + "glasspane");
+        BlockModelBuilder left_model = models().getBuilder(path + "glasspane_edge_left");
+        BlockModelBuilder right_model = models().getBuilder(path + "glasspane_edge_right");
+        BlockModelBuilder corner_model = models().getBuilder(path + "glasspane_corners");
+        blockstateDualGlassPane(block, side_model, left_model, right_model, corner_model);
     }
 
     @Override
     protected void registerStatesAndModels() {
-        buildModels(Registration.GLASS_PANE.get(), "");
-        buildModels(Registration.RED_STAINED_GLASS_PANE.get(), "red");
-        buildModels(Registration.WHITE_STAINED_GLASS_PANE.get(), "white");
-        buildModels(Registration.BLUE_STAINED_GLASS_PANE.get(), "blue");
-        buildModels(Registration.ORANGE_STAINED_GLASS_PANE.get(), "orange");
-        buildModels(Registration.MAGENTA_STAINED_GLASS_PANE.get(), "magenta");
-        buildModels(Registration.LIGHT_BLUE_STAINED_GLASS_PANE.get(), "light_blue");
-        buildModels(Registration.YELLOW_STAINED_GLASS_PANE.get(), "yellow");
-        buildModels(Registration.LIME_STAINED_GLASS_PANE.get(), "lime");
-        buildModels(Registration.PINK_STAINED_GLASS_PANE.get(), "pink");
-        buildModels(Registration.GRAY_STAINED_GLASS_PANE.get(), "gray");
-        buildModels(Registration.LIGHT_GRAY_STAINED_GLASS_PANE.get(), "light_gray");
-        buildModels(Registration.CYAN_STAINED_GLASS_PANE.get(), "cyan");
-        buildModels(Registration.PURPLE_STAINED_GLASS_PANE.get(), "purple");
-        buildModels(Registration.BROWN_STAINED_GLASS_PANE.get(), "brown");
-        buildModels(Registration.GREEN_STAINED_GLASS_PANE.get(), "green");
-        buildModels(Registration.BLACK_STAINED_GLASS_PANE.get(), "black");
+        buildGlassPaneModels(Registration.GLASS_PANE.get(), "");
+        buildGlassPaneModels(Registration.RED_STAINED_GLASS_PANE.get(), "red");
+        buildGlassPaneModels(Registration.WHITE_STAINED_GLASS_PANE.get(), "white");
+        buildGlassPaneModels(Registration.BLUE_STAINED_GLASS_PANE.get(), "blue");
+        buildGlassPaneModels(Registration.ORANGE_STAINED_GLASS_PANE.get(), "orange");
+        buildGlassPaneModels(Registration.MAGENTA_STAINED_GLASS_PANE.get(), "magenta");
+        buildGlassPaneModels(Registration.LIGHT_BLUE_STAINED_GLASS_PANE.get(), "light_blue");
+        buildGlassPaneModels(Registration.YELLOW_STAINED_GLASS_PANE.get(), "yellow");
+        buildGlassPaneModels(Registration.LIME_STAINED_GLASS_PANE.get(), "lime");
+        buildGlassPaneModels(Registration.PINK_STAINED_GLASS_PANE.get(), "pink");
+        buildGlassPaneModels(Registration.GRAY_STAINED_GLASS_PANE.get(), "gray");
+        buildGlassPaneModels(Registration.LIGHT_GRAY_STAINED_GLASS_PANE.get(), "light_gray");
+        buildGlassPaneModels(Registration.CYAN_STAINED_GLASS_PANE.get(), "cyan");
+        buildGlassPaneModels(Registration.PURPLE_STAINED_GLASS_PANE.get(), "purple");
+        buildGlassPaneModels(Registration.BROWN_STAINED_GLASS_PANE.get(), "brown");
+        buildGlassPaneModels(Registration.GREEN_STAINED_GLASS_PANE.get(), "green");
+        buildGlassPaneModels(Registration.BLACK_STAINED_GLASS_PANE.get(), "black");
+
+        buildDualGlassPaneModels(Registration.DUAL_GLASS_PANE.get(), "");
+        buildDualGlassPaneModels(Registration.RED_STAINED_DUAL_GLASS_PANE.get(), "red");
+        buildDualGlassPaneModels(Registration.WHITE_STAINED_DUAL_GLASS_PANE.get(), "white");
+        buildDualGlassPaneModels(Registration.BLUE_STAINED_DUAL_GLASS_PANE.get(), "blue");
+        buildDualGlassPaneModels(Registration.ORANGE_STAINED_DUAL_GLASS_PANE.get(), "orange");
+        buildDualGlassPaneModels(Registration.MAGENTA_STAINED_DUAL_GLASS_PANE.get(), "magenta");
+        buildDualGlassPaneModels(Registration.LIGHT_BLUE_STAINED_DUAL_GLASS_PANE.get(), "light_blue");
+        buildDualGlassPaneModels(Registration.YELLOW_STAINED_DUAL_GLASS_PANE.get(), "yellow");
+        buildDualGlassPaneModels(Registration.LIME_STAINED_DUAL_GLASS_PANE.get(), "lime");
+        buildDualGlassPaneModels(Registration.PINK_STAINED_DUAL_GLASS_PANE.get(), "pink");
+        buildDualGlassPaneModels(Registration.GRAY_STAINED_DUAL_GLASS_PANE.get(), "gray");
+        buildDualGlassPaneModels(Registration.LIGHT_GRAY_STAINED_DUAL_GLASS_PANE.get(), "light_gray");
+        buildDualGlassPaneModels(Registration.CYAN_STAINED_DUAL_GLASS_PANE.get(), "cyan");
+        buildDualGlassPaneModels(Registration.PURPLE_STAINED_DUAL_GLASS_PANE.get(), "purple");
+        buildDualGlassPaneModels(Registration.BROWN_STAINED_DUAL_GLASS_PANE.get(), "brown");
+        buildDualGlassPaneModels(Registration.GREEN_STAINED_DUAL_GLASS_PANE.get(), "green");
+        buildDualGlassPaneModels(Registration.BLACK_STAINED_DUAL_GLASS_PANE.get(), "black");
     }
 }
 /*

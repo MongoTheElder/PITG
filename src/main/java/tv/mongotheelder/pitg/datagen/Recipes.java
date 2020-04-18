@@ -31,6 +31,14 @@ public class Recipes extends RecipeProvider {
                 .build(consumer);
     }
 
+    protected void dualGlassPaneRecipe(Consumer<IFinishedRecipe> consumer, Block result, Block ingredient, String group) {
+        ShapelessRecipeBuilder.shapelessRecipe(result)
+                .addIngredient(ingredient, 2)
+                .addCriterion("has_glass", InventoryChangeTrigger.Instance.forItems(Blocks.GLASS))
+                .setGroup(group)
+                .build(consumer);
+    }
+
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
         glassPaneRecipe(consumer, Registration.GLASS_PANE.get(), Blocks.GLASS_PANE, "glass_pane");
@@ -50,6 +58,24 @@ public class Recipes extends RecipeProvider {
         glassPaneRecipe(consumer, Registration.BROWN_STAINED_GLASS_PANE.get(), Blocks.BROWN_STAINED_GLASS_PANE, "stained_glass_pane");
         glassPaneRecipe(consumer, Registration.GREEN_STAINED_GLASS_PANE.get(), Blocks.GREEN_STAINED_GLASS_PANE, "stained_glass_pane");
         glassPaneRecipe(consumer, Registration.BLACK_STAINED_GLASS_PANE.get(), Blocks.BLACK_STAINED_GLASS_PANE, "stained_glass_pane");
+
+        dualGlassPaneRecipe(consumer, Registration.DUAL_GLASS_PANE.get(), Registration.GLASS_PANE.get(), "glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.RED_STAINED_DUAL_GLASS_PANE.get(), Blocks.RED_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.WHITE_STAINED_DUAL_GLASS_PANE.get(), Blocks.WHITE_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.BLUE_STAINED_DUAL_GLASS_PANE.get(), Blocks.BLUE_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.ORANGE_STAINED_DUAL_GLASS_PANE.get(), Blocks.ORANGE_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.MAGENTA_STAINED_DUAL_GLASS_PANE.get(), Blocks.MAGENTA_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.LIGHT_BLUE_STAINED_DUAL_GLASS_PANE.get(), Blocks.LIGHT_BLUE_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.YELLOW_STAINED_DUAL_GLASS_PANE.get(), Blocks.YELLOW_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.LIME_STAINED_DUAL_GLASS_PANE.get(), Blocks.LIME_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.PINK_STAINED_DUAL_GLASS_PANE.get(), Blocks.PINK_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.GRAY_STAINED_DUAL_GLASS_PANE.get(), Blocks.GRAY_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.LIGHT_GRAY_STAINED_DUAL_GLASS_PANE.get(), Blocks.LIGHT_GRAY_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.CYAN_STAINED_DUAL_GLASS_PANE.get(), Blocks.CYAN_STAINED_GLASS_PANE, "stainedglass_pane");
+        dualGlassPaneRecipe(consumer, Registration.PURPLE_STAINED_DUAL_GLASS_PANE.get(), Blocks.PURPLE_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.BROWN_STAINED_DUAL_GLASS_PANE.get(), Blocks.BROWN_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.GREEN_STAINED_DUAL_GLASS_PANE.get(), Blocks.GREEN_STAINED_GLASS_PANE, "stained_glass_pane");
+        dualGlassPaneRecipe(consumer, Registration.BLACK_STAINED_DUAL_GLASS_PANE.get(), Blocks.BLACK_STAINED_GLASS_PANE, "stained_glass_pane");
 
         ShapelessRecipeBuilder.shapelessRecipe(Registration.GLAZING_TOOL_ITEM.get())
                 .addIngredient(Items.IRON_INGOT)

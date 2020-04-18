@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import tv.mongotheelder.pitg.setup.Registration;
+import tv.mongotheelder.pitg.blocks.GlassPane;
 
 
 public class GlazingTool extends Item {
@@ -33,7 +33,7 @@ public class GlazingTool extends Item {
             Direction direction = context.getFace();
             BlockState blockstate = world.getBlockState(blockpos);
             Block block = blockstate.getBlock();
-            if (block == Registration.GLASS_PANE.get()) {
+            if (block instanceof GlassPane) {
                 // If player is crouching, rotate the pane keeping the facing style consistent (i.e. N->E, SW->NW, etc)
                 // Note: COUNTERCLOCKWISE_90 is being used to pass player crouch context and doesn't represent direction (all rotations are CLOCKWISE_90)
                 world.setBlockState(blockpos, block.rotate(blockstate, world, blockpos, player.isCrouching() ? Rotation.COUNTERCLOCKWISE_90: Rotation.CLOCKWISE_90));

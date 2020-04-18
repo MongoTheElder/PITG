@@ -28,5 +28,23 @@ public class ClientSetup {
         RenderTypeLookup.setRenderLayer(Registration.BROWN_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(Registration.GREEN_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(Registration.BLACK_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
+
+        RenderTypeLookup.setRenderLayer(Registration.DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.RED_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.WHITE_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.BLUE_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.ORANGE_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.MAGENTA_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.LIGHT_BLUE_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.YELLOW_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.LIME_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.PINK_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.GRAY_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.LIGHT_GRAY_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.CYAN_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.PURPLE_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.BROWN_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.GREEN_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.BLACK_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
     }
 }

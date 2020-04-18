@@ -11,6 +11,8 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import tv.mongotheelder.pitg.blocks.DualGlassPane;
+import tv.mongotheelder.pitg.blocks.StainedDualGlassPane;
 import tv.mongotheelder.pitg.blocks.GlassPane;
 import tv.mongotheelder.pitg.blocks.StainedGlassPane;
 import tv.mongotheelder.pitg.items.GlazingTool;
@@ -81,4 +83,56 @@ public class Registration {
 
     // Alternate green dye item - I hate being forced to find a desert biome to get green dye
     public static final RegistryObject<Item> GREEN_DYE_ITEM = ITEMS.register("green_dye", () -> new DyeItem(DyeColor.GREEN, (new Item.Properties()).group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<DualGlassPane> DUAL_GLASS_PANE = BLOCKS.register("dualglasspane", () -> new DualGlassPane(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> DUAL_PANE_ITEM = ITEMS.register("dualglasspane", () -> new BlockItem(DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> RED_STAINED_DUAL_GLASS_PANE = BLOCKS.register("red_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.RED, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> RED_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("red_stained_dualglasspane", () -> new BlockItem(RED_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> WHITE_STAINED_DUAL_GLASS_PANE = BLOCKS.register("white_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.WHITE, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> WHITE_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("white_stained_dualglasspane", () -> new BlockItem(WHITE_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> BLUE_STAINED_DUAL_GLASS_PANE = BLOCKS.register("blue_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.BLUE, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> BLUE_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("blue_stained_dualglasspane", () -> new BlockItem(BLUE_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> ORANGE_STAINED_DUAL_GLASS_PANE = BLOCKS.register("orange_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.ORANGE, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> ORANGE_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("orange_stained_dualglasspane", () -> new BlockItem(ORANGE_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> MAGENTA_STAINED_DUAL_GLASS_PANE = BLOCKS.register("magenta_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.MAGENTA, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> MAGENTA_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("magenta_stained_dualglasspane", () -> new BlockItem(MAGENTA_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> LIGHT_BLUE_STAINED_DUAL_GLASS_PANE = BLOCKS.register("light_blue_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.LIGHT_BLUE, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> LIGHT_BLUE_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("light_blue_stained_dualglasspane", () -> new BlockItem(LIGHT_BLUE_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> YELLOW_STAINED_DUAL_GLASS_PANE = BLOCKS.register("yellow_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.YELLOW, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> YELLOW_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("yellow_stained_dualglasspane", () -> new BlockItem(YELLOW_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> LIME_STAINED_DUAL_GLASS_PANE = BLOCKS.register("lime_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.LIME, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> LIME_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("lime_stained_dualglasspane", () -> new BlockItem(LIME_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> PINK_STAINED_DUAL_GLASS_PANE = BLOCKS.register("pink_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.PINK, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> PINK_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("pink_stained_dualglasspane", () -> new BlockItem(PINK_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> GRAY_STAINED_DUAL_GLASS_PANE = BLOCKS.register("gray_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.GRAY, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> GRAY_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("gray_stained_dualglasspane", () -> new BlockItem(GRAY_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> LIGHT_GRAY_STAINED_DUAL_GLASS_PANE = BLOCKS.register("light_gray_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.LIGHT_GRAY, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> LIGHT_GRAY_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("light_gray_stained_dualglasspane", () -> new BlockItem(LIGHT_GRAY_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> CYAN_STAINED_DUAL_GLASS_PANE = BLOCKS.register("cyan_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.CYAN, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> CYAN_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("cyan_stained_dualglasspane", () -> new BlockItem(CYAN_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> PURPLE_STAINED_DUAL_GLASS_PANE = BLOCKS.register("purple_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.PURPLE, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> PURPLE_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("purple_stained_dualglasspane", () -> new BlockItem(PURPLE_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> BROWN_STAINED_DUAL_GLASS_PANE = BLOCKS.register("brown_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.BROWN, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> BROWN_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("brown_stained_dualglasspane", () -> new BlockItem(BROWN_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> GREEN_STAINED_DUAL_GLASS_PANE = BLOCKS.register("green_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.GREEN, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> GREEN_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("green_stained_dualglasspane", () -> new BlockItem(GREEN_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
+    public static final RegistryObject<StainedDualGlassPane> BLACK_STAINED_DUAL_GLASS_PANE = BLOCKS.register("black_stained_dualglasspane", () -> new StainedDualGlassPane(DyeColor.BLACK, Block.Properties.create(Material.GLASS).hardnessAndResistance(0.3f).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Item> BLACK_STAINED_DUAL_GLASS_PANE_ITEM = ITEMS.register("black_stained_dualglasspane", () -> new BlockItem(BLACK_STAINED_DUAL_GLASS_PANE.get(), new Item.Properties().group(ModSetup.ITEM_GROUP)));
+
 }
