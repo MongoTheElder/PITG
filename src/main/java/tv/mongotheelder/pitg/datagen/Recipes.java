@@ -78,7 +78,7 @@ public class Recipes extends RecipeProvider {
         dualGlassPaneRecipe(consumer, Registration.BLACK_STAINED_DUAL_GLASS_PANE.get(), Registration.BLACK_STAINED_GLASS_PANE.get(), "stained_glass_pane");
 
         ShapelessRecipeBuilder.shapelessRecipe(Registration.GLAZING_TOOL_ITEM.get())
-                .addIngredient(Items.IRON_INGOT)
+                .addIngredient(Tags.Items.INGOTS_IRON)
                 .addIngredient(Tags.Items.DYES_GREEN)
                 .addIngredient(Tags.Items.GLASS_PANES)
                 .setGroup("tools")
