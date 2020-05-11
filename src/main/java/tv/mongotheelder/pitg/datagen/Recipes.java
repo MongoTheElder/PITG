@@ -28,7 +28,7 @@ public class Recipes extends RecipeProvider {
                 .addIngredient(result, 1)
                 .addCriterion("has_glass", InventoryChangeTrigger.Instance.forItems(Blocks.GLASS))
                 .setGroup(group)
-                .build(consumer);
+                .build(consumer, ingredient.getRegistryName()+"_from_edge_pane");
     }
 
     protected void dualGlassPaneRecipe(Consumer<IFinishedRecipe> consumer, Block result, Block ingredient, String group) {
@@ -37,6 +37,11 @@ public class Recipes extends RecipeProvider {
                 .addCriterion("has_glass", InventoryChangeTrigger.Instance.forItems(Blocks.GLASS))
                 .setGroup(group)
                 .build(consumer);
+        ShapelessRecipeBuilder.shapelessRecipe(ingredient, 2)
+                .addIngredient(result, 1)
+                .addCriterion("has_glass", InventoryChangeTrigger.Instance.forItems(Blocks.GLASS))
+                .setGroup(group)
+                .build(consumer, ingredient.getRegistryName()+"_from_dual_pane");
     }
 
     @Override
