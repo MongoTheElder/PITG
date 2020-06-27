@@ -115,10 +115,13 @@
     },
     {
       "when": {
-        "OR": 
-          [{ "north": true},{
-          "west": true}]
-        
+        "OR": [
+          {
+            "north": true
+          }, {
+            "west": true
+          }
+        ]
       },
       "apply": {
         "model": "pitg:block/black_stained_glasspane_corners"
@@ -126,10 +129,13 @@
     },
     {
       "when": {
-        "OR": [{
-          "north": true},{
-          "east": true}]
-        
+        "OR": [
+          {
+            "north": true
+          }, {
+            "east": true
+          }
+        ]
       },
       "apply": {
         "model": "pitg:block/black_stained_glasspane_corners",
@@ -138,10 +144,13 @@
     },
     {
       "when": {
-        "OR": [{
-          "west": true},{
-          "south": true}]
-        
+        "OR": [
+          {
+            "west": true
+          }, {
+            "south": true
+          }
+        ]
       },
       "apply": {
         "model": "pitg:block/black_stained_glasspane_corners",
@@ -150,10 +159,13 @@
     },
     {
       "when": {
-        "OR": [{
-          "east": true},{
-          "south": true}]
-        
+        "OR": [
+          {
+            "east": true
+          }, {
+            "south": true
+          }
+        ]
       },
       "apply": {
         "model": "pitg:block/black_stained_glasspane_corners",
