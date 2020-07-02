@@ -2,25 +2,53 @@ package tv.mongotheelder.pitg.items;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import tv.mongotheelder.pitg.Config;
 import tv.mongotheelder.pitg.blocks.GlassPane;
 
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class GlazingTool extends Item {
     private static final Logger LOGGER = LogManager.getLogger();
+    private GlazingToolMode mode = GlazingToolMode.ROTATE;
 
     public GlazingTool(Item.Properties properties) {
         super(properties);
+        this.addPropertyOverride(new ResourceLocation("pitg:unbreaking"), (itemStack, world, livingEntity) -> {
+            if (livingEntity != null) {
+                boolean flag = livingEntity.getHeldItemMainhand() == itemStack;
+                if (livingEntity.getHeldItemMainhand().getItem() instanceof GlazingTool) {
+                    return flag && mode == GlazingToolMode.UNBREAKABLE ? 1.0f : 0.0f;
+                }
+             }
+            return 0.0F;
+        });
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        super.addInformation(stack, world, tooltip, flag);
+        if (Config.ENABLE_PANE_BREAK.get() || Config.ENABLE_UNBREAKABLE.get()) {
+            tooltip.add(new StringTextComponent("Mode: "+mode.getTitle()).applyTextStyle(TextFormatting.DARK_GREEN));
+        }
+    }
+
+    @Override
+    public boolean hasEffect(ItemStack stack) {
+        return (Config.ENABLE_PANE_BREAK.get() && mode == GlazingToolMode.BREAK) || stack.isEnchanted();
     }
 
     @Override
@@ -34,11 +62,31 @@ public class GlazingTool extends Item {
             BlockState blockstate = world.getBlockState(blockpos);
             Block block = blockstate.getBlock();
             if (block instanceof GlassPane) {
-                // If player is crouching, rotate the pane keeping the facing style consistent (i.e. N->E, SW->NW, etc)
-                // Note: COUNTERCLOCKWISE_90 is being used to pass player crouch context and doesn't represent direction (all rotations are CLOCKWISE_90)
-                world.setBlockState(blockpos, block.rotate(blockstate, world, blockpos, player.isCrouching() ? Rotation.COUNTERCLOCKWISE_90: Rotation.CLOCKWISE_90));
+                if (Config.ENABLE_PANE_BREAK.get() && mode == GlazingToolMode.BREAK) {
+                    if (player != null && player.isCrouching()) {
+                        world.removeBlock(blockpos, false);
+                        Block.spawnAsEntity(world, blockpos, block.getPickBlock(blockstate, null, world, blockpos, player));
+                    }
+
+                } else if (Config.ENABLE_UNBREAKABLE.get() && mode == GlazingToolMode.UNBREAKABLE) {
+                    world.setBlockState(blockpos, blockstate.with(GlassPane.UNBREAKABLE, !blockstate.get(GlassPane.UNBREAKABLE)));
+                }
+                else {
+                    // If player is crouching, rotate the pane keeping the facing style consistent (i.e. N->E, SW->NW, etc)
+                    // Note: COUNTERCLOCKWISE_90 is being used to pass player crouch context and doesn't represent direction (all rotations are CLOCKWISE_90)
+                    world.setBlockState(blockpos, block.rotate(blockstate, world, blockpos, player != null && player.isCrouching() ? Rotation.COUNTERCLOCKWISE_90 : Rotation.CLOCKWISE_90));
+                }
             }
         }
         return ActionResultType.SUCCESS;
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        // change mode
+        if (!worldIn.isRemote()) {
+            mode = mode.advanceMode();
+        }
+        return ActionResult.resultSuccess(playerIn.getHeldItem(handIn));
     }
 }

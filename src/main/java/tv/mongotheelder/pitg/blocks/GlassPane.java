@@ -21,6 +21,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import tv.mongotheelder.pitg.Config;
 
 public class GlassPane extends Block implements IWaterLoggable {
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
@@ -28,6 +29,7 @@ public class GlassPane extends Block implements IWaterLoggable {
     public static final BooleanProperty SOUTH = BooleanProperty.create("south");
     public static final BooleanProperty WEST = BooleanProperty.create("west");
     public static final BooleanProperty WATERLOGGED = BooleanProperty.create("waterlogged");
+    public static final BooleanProperty UNBREAKABLE = BooleanProperty.create("unbreakable");
     public static final int NORTH_MASK = 0b0001;
     public static final int WEST_MASK = 0b0010;
     public static final int SOUTH_MASK = 0b0100;
@@ -53,6 +55,7 @@ public class GlassPane extends Block implements IWaterLoggable {
                 .with(EAST, Boolean.FALSE)
                 .with(SOUTH, Boolean.FALSE)
                 .with(WEST, Boolean.FALSE)
+                .with(UNBREAKABLE, Boolean.FALSE)
                 .with(WATERLOGGED, Boolean.FALSE));
     }
 
@@ -97,6 +100,12 @@ public class GlassPane extends Block implements IWaterLoggable {
     @SuppressWarnings("deprecation")
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return this.collisionShapes[this.getIndex(state)];
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public float getBlockHardness(BlockState blockState, IBlockReader worldIn, BlockPos pos) {
+        return Config.ENABLE_UNBREAKABLE.get() && blockState.get(UNBREAKABLE) ? -1.0f : 0.3f;
     }
 
     protected int getIndex(BlockState state) {
@@ -222,13 +231,13 @@ public class GlassPane extends Block implements IWaterLoggable {
                 .with(WEST, clickedWest)
                 .with(SOUTH, clickedSouth)
                 .with(EAST, clickedEast)
+                .with(UNBREAKABLE, false)
                 .with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
     }
 
     // Register properties for a glass pane
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(NORTH, EAST, WEST, SOUTH, WATERLOGGED);
+        builder.add(NORTH, EAST, WEST, SOUTH, UNBREAKABLE, WATERLOGGED);
     }
 
-    //public boolean isTransparent(BlockState state) { return true; }
 }
