@@ -21,7 +21,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import tv.mongotheelder.pitg.Config;
+import tv.mongotheelder.pitg.setup.Config;
 
 public class GlassPane extends Block implements IWaterLoggable {
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
