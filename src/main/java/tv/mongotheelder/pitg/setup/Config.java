@@ -1,9 +1,10 @@
-package tv.mongotheelder.pitg;
+package tv.mongotheelder.pitg.setup;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import tv.mongotheelder.pitg.items.GlazingToolMode;
 
 @Mod.EventBusSubscriber
 public class Config {
@@ -41,6 +42,7 @@ public class Config {
 
     @SubscribeEvent
     public static void onReload(final ModConfig.Reloading configEvent) {
+        GlazingToolMode.refresh();
     }
 
 }
