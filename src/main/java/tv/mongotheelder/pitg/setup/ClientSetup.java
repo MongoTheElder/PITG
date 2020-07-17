@@ -11,7 +11,7 @@ import tv.mongotheelder.pitg.Pitg;
 public class ClientSetup {
 
     public static void init(final FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(Registration.GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.GLASS_PANE.get(), RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(Registration.RED_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(Registration.WHITE_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(Registration.BLUE_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
@@ -29,7 +29,7 @@ public class ClientSetup {
         RenderTypeLookup.setRenderLayer(Registration.GREEN_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(Registration.BLACK_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
 
-        RenderTypeLookup.setRenderLayer(Registration.DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(Registration.DUAL_GLASS_PANE.get(), RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(Registration.RED_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(Registration.WHITE_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(Registration.BLUE_STAINED_DUAL_GLASS_PANE.get(), RenderType.getTranslucent());
