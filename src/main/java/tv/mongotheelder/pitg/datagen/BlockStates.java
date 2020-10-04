@@ -4,6 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import tv.mongotheelder.pitg.Pitg;
 import tv.mongotheelder.pitg.blocks.DualGlassPane;
 import tv.mongotheelder.pitg.blocks.GlassPane;
