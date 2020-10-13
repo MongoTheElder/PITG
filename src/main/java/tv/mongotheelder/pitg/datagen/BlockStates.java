@@ -1,9 +1,14 @@
 package tv.mongotheelder.pitg.datagen;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.DyeColor;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.*;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelBuilder;
+import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import tv.mongotheelder.pitg.Pitg;
 import tv.mongotheelder.pitg.blocks.DualGlassPane;
 import tv.mongotheelder.pitg.blocks.GlassPane;
@@ -147,88 +152,12 @@ public class BlockStates extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         buildGlassPaneModels(Registration.GLASS_PANE.get(), "");
-        buildGlassPaneModels(Registration.RED_STAINED_GLASS_PANE.get(), "red");
-        buildGlassPaneModels(Registration.WHITE_STAINED_GLASS_PANE.get(), "white");
-        buildGlassPaneModels(Registration.BLUE_STAINED_GLASS_PANE.get(), "blue");
-        buildGlassPaneModels(Registration.ORANGE_STAINED_GLASS_PANE.get(), "orange");
-        buildGlassPaneModels(Registration.MAGENTA_STAINED_GLASS_PANE.get(), "magenta");
-        buildGlassPaneModels(Registration.LIGHT_BLUE_STAINED_GLASS_PANE.get(), "light_blue");
-        buildGlassPaneModels(Registration.YELLOW_STAINED_GLASS_PANE.get(), "yellow");
-        buildGlassPaneModels(Registration.LIME_STAINED_GLASS_PANE.get(), "lime");
-        buildGlassPaneModels(Registration.PINK_STAINED_GLASS_PANE.get(), "pink");
-        buildGlassPaneModels(Registration.GRAY_STAINED_GLASS_PANE.get(), "gray");
-        buildGlassPaneModels(Registration.LIGHT_GRAY_STAINED_GLASS_PANE.get(), "light_gray");
-        buildGlassPaneModels(Registration.CYAN_STAINED_GLASS_PANE.get(), "cyan");
-        buildGlassPaneModels(Registration.PURPLE_STAINED_GLASS_PANE.get(), "purple");
-        buildGlassPaneModels(Registration.BROWN_STAINED_GLASS_PANE.get(), "brown");
-        buildGlassPaneModels(Registration.GREEN_STAINED_GLASS_PANE.get(), "green");
-        buildGlassPaneModels(Registration.BLACK_STAINED_GLASS_PANE.get(), "black");
-
         buildDualGlassPaneModels(Registration.DUAL_GLASS_PANE.get(), "");
-        buildDualGlassPaneModels(Registration.RED_STAINED_DUAL_GLASS_PANE.get(), "red");
-        buildDualGlassPaneModels(Registration.WHITE_STAINED_DUAL_GLASS_PANE.get(), "white");
-        buildDualGlassPaneModels(Registration.BLUE_STAINED_DUAL_GLASS_PANE.get(), "blue");
-        buildDualGlassPaneModels(Registration.ORANGE_STAINED_DUAL_GLASS_PANE.get(), "orange");
-        buildDualGlassPaneModels(Registration.MAGENTA_STAINED_DUAL_GLASS_PANE.get(), "magenta");
-        buildDualGlassPaneModels(Registration.LIGHT_BLUE_STAINED_DUAL_GLASS_PANE.get(), "light_blue");
-        buildDualGlassPaneModels(Registration.YELLOW_STAINED_DUAL_GLASS_PANE.get(), "yellow");
-        buildDualGlassPaneModels(Registration.LIME_STAINED_DUAL_GLASS_PANE.get(), "lime");
-        buildDualGlassPaneModels(Registration.PINK_STAINED_DUAL_GLASS_PANE.get(), "pink");
-        buildDualGlassPaneModels(Registration.GRAY_STAINED_DUAL_GLASS_PANE.get(), "gray");
-        buildDualGlassPaneModels(Registration.LIGHT_GRAY_STAINED_DUAL_GLASS_PANE.get(), "light_gray");
-        buildDualGlassPaneModels(Registration.CYAN_STAINED_DUAL_GLASS_PANE.get(), "cyan");
-        buildDualGlassPaneModels(Registration.PURPLE_STAINED_DUAL_GLASS_PANE.get(), "purple");
-        buildDualGlassPaneModels(Registration.BROWN_STAINED_DUAL_GLASS_PANE.get(), "brown");
-        buildDualGlassPaneModels(Registration.GREEN_STAINED_DUAL_GLASS_PANE.get(), "green");
-        buildDualGlassPaneModels(Registration.BLACK_STAINED_DUAL_GLASS_PANE.get(), "black");
-    }
-}
-/*
 
-blockstates/glasspane.json
-    { "when": { "north": true },
-      "apply": { "model": "pitg:block/glasspane" }
-    },
-    { "when": { "east": true },
-      "apply": { "model": "pitg:block/glasspane", "y": 90 }
-    },
-    { "when": { "south": true },
-      "apply": { "model": "pitg:block/glasspane", "y": 180 }
-    },
-    { "when": { "west": true },
-      "apply": { "model": "pitg:block/glasspane", "y": 270 }
-    },
-    {
-      "when": { "north": true, "west": false },
-      "apply": { "model": "pitg:/block/glasspane_edge_left", "y": 0 }
-    },
-
-
-models/block/glasspane.json
-{
-  "textures": {
-    "edge": "block/glass_pane_top",
-    "pane": "block/glass",
-    "particle": "#pane"
-  },
-  "ambientocclusion": false,
-  "elements": [
-    { "from": [ 0, 0, 0 ],
-      "to": [ 16, 16, 2 ],
-      "faces": {
-        "north": { "uv": [  0,  0, 16, 16 ], "texture": "#pane", "rotation": 90 },
-        "south": { "uv": [  0,  0, 16, 16 ], "texture": "#pane" }
-      }
-    },
-    {
-      "from": [ 2, 0, 0 ],
-      "to": [ 14, 16, 2],
-      "faces": {
-        "down": { "uv": [ 7, 2, 9, 14 ], "texture": "#edge", "rotation": 90 },
-        "up":   { "uv": [ 7, 2, 9, 14 ], "texture": "#edge", "rotation": 90
+        for (DyeColor color : DyeColor.values()) {
+            String colorName = color.getString().toLowerCase();
+            buildGlassPaneModels(Registration.GLASS_PANES.get(color).get(), colorName);
+            buildDualGlassPaneModels(Registration.DUAL_GLASS_PANES.get(color).get(), colorName);
         }
-      }
     }
-  ]
 }
- */
