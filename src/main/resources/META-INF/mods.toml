@@ -4,27 +4,29 @@
 # Note that there are a couple of TOML lists in this file.
 # Find more information on toml format here:  https://github.com/toml-lang/toml
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
-modLoader="javafml" #mandatory
+modLoader = "javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[32,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+loaderVersion = "[34,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 # A URL to refer people to when problems occur with this mod
-issueTrackerURL="https://github.com/MongoTheElder/PITG" #optional
+issueTrackerURL = "https://github.com/MongoTheElder/PITG" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
+# The license that covers this mod
+license = "MIT Open Source"
 [[mods]] #mandatory
 # The modid of the mod
-modId="pitg" #mandatory
+modId = "pitg" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="1.16.1-1.3.0" #mandatory
- # A display name for the mod
-displayName="Pane In The Glass" #mandatory
+version = "1.16.3-1.4.0" #mandatory
+# A display name for the mod
+displayName = "Pane In The Glass" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="pitg.png" #optional
+logoFile = "pitg.png" #optional
 # A text field displayed in the mod UI
-credits="Thanks to the Forge team for making Minecraft modding available" #optional
+credits = "Thanks to the Forge team for making Minecraft modding available" #optional
 # A text field displayed in the mod UI
-authors="MongoTheElder" #optional
+authors = "MongoTheElder" #optional
 # The description text for the mod (multi line!) (#mandatory)
-description='''
+description = '''
 Glass panes on the edge of blocks? Are you crazy? No, siree, you are not insane!
 
 Pane In The Glass provides glass panes that align to the edge of blocks instead of the center making them
@@ -32,20 +34,20 @@ compatible with doors and other blocks that are aligned with the outer surface o
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.examplemod]] #optional
-    # the modid of the dependency
-    modId="forge" #mandatory
-    # Does this dependency have to exist - if not, ordering below must be specified
-    mandatory=true #mandatory
-    # The version range of the dependency
-    versionRange="[32,)" #mandatory
-    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
-    ordering="NONE"
-    # Side this dependency is applied on - BOTH, CLIENT or SERVER
-    side="BOTH"
+# the modid of the dependency
+modId = "forge" #mandatory
+# Does this dependency have to exist - if not, ordering below must be specified
+mandatory = true #mandatory
+# The version range of the dependency
+versionRange = "[34,)" #mandatory
+# An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+ordering = "NONE"
+# Side this dependency is applied on - BOTH, CLIENT or SERVER
+side = "BOTH"
 # Here's another dependency
 [[dependencies.examplemod]]
     modId="minecraft"
-    mandatory=true
-    versionRange="[1.16.1]"
-    ordering="NONE"
+mandatory = true
+versionRange = "[1.16.3]"
+ordering = "NONE"
     side="BOTH"
