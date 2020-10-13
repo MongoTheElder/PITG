@@ -11,9 +11,9 @@ import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.MatchTool;
+import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
