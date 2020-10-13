@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.*;
@@ -27,13 +28,12 @@ public class GlazingTool extends Item {
 
     public GlazingTool(Item.Properties properties) {
         super(properties);
-        this.addPropertyOverride(new ResourceLocation("pitg:unbreaking"), (itemStack, world, livingEntity) -> {
+        ItemModelsProperties.registerProperty(this, new ResourceLocation("pitg:unbreaking"), (itemStack, clientWorld, livingEntity) -> {
             if (livingEntity != null) {
-                boolean flag = livingEntity.getHeldItemMainhand() == itemStack;
                 if (livingEntity.getHeldItemMainhand().getItem() instanceof GlazingTool) {
-                    return flag && mode == GlazingToolMode.UNBREAKABLE ? 1.0f : 0.0f;
+                    return livingEntity.getHeldItemMainhand() == itemStack && mode == GlazingToolMode.UNBREAKABLE ? 1.0f : 0.0f;
                 }
-             }
+            }
             return 0.0F;
         });
     }
@@ -42,7 +42,7 @@ public class GlazingTool extends Item {
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.addInformation(stack, world, tooltip, flag);
         if (Config.ENABLE_PANE_BREAK.get() || Config.ENABLE_UNBREAKABLE.get()) {
-            tooltip.add(new StringTextComponent("Mode: "+mode.getTitle()).applyTextStyle(TextFormatting.DARK_GREEN));
+            tooltip.add(new StringTextComponent("Mode: " + mode.getTitle()).mergeStyle(TextFormatting.DARK_GREEN));
         }
     }
 
