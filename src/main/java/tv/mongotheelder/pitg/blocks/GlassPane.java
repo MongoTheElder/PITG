@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -104,8 +105,8 @@ public class GlassPane extends Block implements IWaterLoggable {
 
     @SuppressWarnings("deprecation")
     @Override
-    public float getBlockHardness(BlockState blockState, IBlockReader worldIn, BlockPos pos) {
-        return Config.ENABLE_UNBREAKABLE.get() && blockState.get(UNBREAKABLE) ? -1.0f : 0.3f;
+    public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
+        return Config.ENABLE_UNBREAKABLE.get() && state.get(UNBREAKABLE) ? -1.0f : 0.3f;
     }
 
     protected int getIndex(BlockState state) {
