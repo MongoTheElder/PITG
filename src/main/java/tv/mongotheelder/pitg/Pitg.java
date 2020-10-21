@@ -13,11 +13,12 @@ import tv.mongotheelder.pitg.setup.*;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("pitg")
 public class Pitg {
+    public static final String GLAZING_TOOL_TAG = "glazing_tool_tag";
     public static final String MODID = "pitg";
 
     public static final String[] COLORS = { "", "white", "red", "blue", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "light_gray", "cyan", "purple", "brown", "green", "black" };
 
-    public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
+    public static IProxy proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     private static final Logger LOGGER = LogManager.getLogger();
 
