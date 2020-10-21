@@ -1,19 +1,23 @@
 package tv.mongotheelder.pitg.items;
 
+import net.minecraft.util.IStringSerializable;
 import tv.mongotheelder.pitg.Config;
 
-public enum GlazingToolMode {
+public enum GlazingToolMode implements IStringSerializable {
     ROTATE("Rotate"),
     UNBREAKABLE("Unbreakable"),
     BREAK("Break");
 
-    private final String title;
+    private final String name;
 
-    GlazingToolMode(String title) {
-        this.title = title;
+    GlazingToolMode(String name) {
+        this.name = name;
     }
 
-    public String getTitle() { return title; }
+    @Override
+    public String getString() {
+        return name;
+    }
 
     public GlazingToolMode advanceMode() {
         switch (this) {
@@ -25,6 +29,13 @@ public enum GlazingToolMode {
             default:
                 return ROTATE;
         }
+    }
+
+    public static GlazingToolMode byName(String name) {
+        for (GlazingToolMode mode : GlazingToolMode.values()) {
+            if (mode.getString().toLowerCase().equals(name)) return mode;
+        }
+        return ROTATE;
     }
 }
 
