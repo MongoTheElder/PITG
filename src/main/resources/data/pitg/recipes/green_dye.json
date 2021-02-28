@@ -10,6 +10,7 @@
     }
   ],
   "result": {
-    "item": "pitg:green_dye"
+    "item": "pitg:green_dye",
+    "count": 2
   }
 }
