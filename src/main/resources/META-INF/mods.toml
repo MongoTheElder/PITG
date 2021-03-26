@@ -16,7 +16,7 @@ license = "MIT Open Source"
 # The modid of the mod
 modId = "pitg" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version = "1.16.3-1.4.1" #mandatory
+version = "1.16.3-1.4.2" #mandatory
 # A display name for the mod
 displayName = "Pane In The Glass" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
@@ -33,7 +33,7 @@ Pane In The Glass provides glass panes that align to the edge of blocks instead 
 compatible with doors and other blocks that are aligned with the outer surface of adjacent blocks
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.examplemod]] #optional
+[[dependencies.pitg]] #optional
 # the modid of the dependency
 modId = "forge" #mandatory
 # Does this dependency have to exist - if not, ordering below must be specified
@@ -45,7 +45,7 @@ ordering = "NONE"
 # Side this dependency is applied on - BOTH, CLIENT or SERVER
 side = "BOTH"
 # Here's another dependency
-[[dependencies.examplemod]]
+[[dependencies.pitg]]
     modId="minecraft"
 mandatory = true
 versionRange = "[1.16.3]"
