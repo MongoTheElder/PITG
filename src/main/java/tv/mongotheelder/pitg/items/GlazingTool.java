@@ -8,6 +8,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.Half;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -22,6 +24,7 @@ import org.apache.logging.log4j.Logger;
 import tv.mongotheelder.pitg.Config;
 import tv.mongotheelder.pitg.Pitg;
 import tv.mongotheelder.pitg.blocks.GlassPane;
+import tv.mongotheelder.pitg.blocks.HorizontalGlassPane;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -43,7 +46,7 @@ public class GlazingTool extends Item {
     public void writeMode(ItemStack itemStack, GlazingToolMode mode) {
         if (itemStack.getItem() instanceof GlazingTool) {
             CompoundNBT tag = itemStack.getOrCreateTag();
-            tag.putString(Pitg.GLAZING_TOOL_TAG, mode.getString().toLowerCase());
+            tag.putString(Pitg.GLAZING_TOOL_TAG, mode.getSerializedName().toLowerCase());
         }
     }
 
@@ -54,40 +57,49 @@ public class GlazingTool extends Item {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        super.addInformation(stack, world, tooltip, flag);
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        super.appendHoverText(stack, world, tooltip, flag);
         if (Config.ENABLE_PANE_BREAK.get() || Config.ENABLE_UNBREAKABLE.get()) {
-            tooltip.add(new StringTextComponent("Mode: " + readMode(stack).getString()).mergeStyle(TextFormatting.DARK_GREEN));
+            tooltip.add(new StringTextComponent("Mode: " + readMode(stack).getSerializedName()).withStyle(TextFormatting.DARK_GREEN));
         }
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return (Config.ENABLE_PANE_BREAK.get() && readMode(stack) == GlazingToolMode.BREAK) || stack.isEnchanted();
     }
 
+    private Half flip(BlockState state) {
+        return state.getValue(BlockStateProperties.HALF) == Half.TOP ? Half.BOTTOM : Half.TOP;
+    }
+
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
-        if (!world.isRemote) {
+    public ActionResultType useOn(ItemUseContext context) {
+        World world = context.getLevel();
+        if (!world.isClientSide) {
             PlayerEntity player = context.getPlayer();
-            BlockPos blockpos = context.getPos();
+            BlockPos blockpos = context.getClickedPos();
             BlockState blockstate = world.getBlockState(blockpos);
             Block block = blockstate.getBlock();
-            GlazingToolMode mode = readMode(context.getItem());
-            if (block instanceof GlassPane) {
+            GlazingToolMode mode = readMode(context.getItemInHand());
+            if (block instanceof GlassPane || block instanceof HorizontalGlassPane) {
                 if (Config.ENABLE_PANE_BREAK.get() && mode == GlazingToolMode.BREAK) {
                     if (player != null && player.isCrouching()) {
                         world.removeBlock(blockpos, false);
-                        Block.spawnAsEntity(world, blockpos, block.getPickBlock(blockstate, null, world, blockpos, player));
+                        Block.popResource(world, blockpos, block.getPickBlock(blockstate, null, world, blockpos, player));
                     }
 
                 } else if (Config.ENABLE_UNBREAKABLE.get() && mode == GlazingToolMode.UNBREAKABLE) {
-                    world.setBlockState(blockpos, blockstate.with(GlassPane.UNBREAKABLE, !blockstate.get(GlassPane.UNBREAKABLE)));
+                    world.setBlockAndUpdate(blockpos, blockstate.setValue(GlassPane.UNBREAKABLE, !blockstate.getValue(GlassPane.UNBREAKABLE)));
                 } else {
-                    // If player is crouching, rotate the pane keeping the facing style consistent (i.e. N->E, SW->NW, etc)
-                    // Note: COUNTERCLOCKWISE_90 is being used to pass player crouch context and doesn't represent direction (all rotations are CLOCKWISE_90)
-                    world.setBlockState(blockpos, block.rotate(blockstate, world, blockpos, player != null && player.isCrouching() ? Rotation.COUNTERCLOCKWISE_90 : Rotation.CLOCKWISE_90));
+                    if (block instanceof GlassPane) {
+                        // If player is crouching, rotate the pane keeping the facing style consistent (i.e. N->E, SW->NW, etc)
+                        // Note: COUNTERCLOCKWISE_90 is being used to pass player crouch context and doesn't represent direction (all rotations are CLOCKWISE_90)
+                        world.setBlockAndUpdate(blockpos, block.rotate(blockstate, world, blockpos, player != null && player.isCrouching() ? Rotation.COUNTERCLOCKWISE_90 : Rotation.CLOCKWISE_90));
+
+                    } else if (block instanceof HorizontalGlassPane) {
+                        world.setBlockAndUpdate(blockpos, blockstate.setValue(BlockStateProperties.HALF, flip(blockstate)));
+                    }
                 }
             }
         }
@@ -95,12 +107,12 @@ public class GlazingTool extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         // change mode
-        if (!worldIn.isRemote()) {
-            ItemStack toolItem = playerIn.getHeldItem(handIn);
+        if (!worldIn.isClientSide()) {
+            ItemStack toolItem = playerIn.getItemInHand(handIn);
             writeMode(toolItem, readMode(toolItem).advanceMode());
         }
-        return ActionResult.resultSuccess(playerIn.getHeldItem(handIn));
+        return ActionResult.success(playerIn.getItemInHand(handIn));
     }
 }
