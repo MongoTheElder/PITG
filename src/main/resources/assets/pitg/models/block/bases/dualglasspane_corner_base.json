@@ -1,0 +1,38 @@
+{
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        2,
+        16,
+        2
+      ],
+      "faces": {
+        "down": {
+          "texture": "#edge",
+          "uv": [
+            7,
+            0,
+            9,
+            2
+          ],
+          "rotation": 90
+        },
+        "up": {
+          "texture": "#edge",
+          "uv": [
+            7,
+            0,
+            9,
+            2
+          ],
+          "rotation": 90
+        }
+      }
+    }
+  ]
+}

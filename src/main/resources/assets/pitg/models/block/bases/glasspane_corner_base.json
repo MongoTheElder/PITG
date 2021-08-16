@@ -1,0 +1,157 @@
+{
+  "ambientocclusion": false,
+  "comment": "NE corner pane (0 rotation)",
+  "elements": [
+    {
+      "comment": "North pane (without NE corner)",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        14,
+        16,
+        2
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pane",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#pane"
+        },
+        "west": {
+          "texture": "#edge",
+          "cullface": "west",
+          "uv": [
+            7,
+            0,
+            9,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#edge",
+          "cullface": "up",
+          "uv": [
+            7,
+            0,
+            9,
+            16
+          ],
+          "rotation": 90
+        },
+        "down": {
+          "texture": "#edge",
+          "cullface": "down",
+          "uv": [
+            7,
+            0,
+            9,
+            16
+          ],
+          "rotation": 90
+        }
+      }
+    },
+    {
+      "comment": "East pane (without NE corner)",
+      "from": [
+        14,
+        0,
+        2
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "east": {
+          "texture": "#pane",
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#edge",
+          "cullface": "south",
+          "uv": [
+            7,
+            0,
+            9,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#pane"
+        },
+        "up": {
+          "texture": "#edge",
+          "cullface": "up",
+          "uv": [
+            7,
+            0,
+            9,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#edge",
+          "cullface": "down",
+          "uv": [
+            7,
+            0,
+            9,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "comment": "NE corner",
+      "from": [
+        14,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        2
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pane",
+          "cullface": "north"
+        },
+        "east": {
+          "texture": "#pane",
+          "cullface": "east"
+        },
+        "up": {
+          "texture": "#edge",
+          "cullface": "up",
+          "uv": [
+            7,
+            7,
+            9,
+            9
+          ],
+          "rotation": 90
+        },
+        "down": {
+          "texture": "#edge",
+          "cullface": "down",
+          "uv": [
+            7,
+            7,
+            9,
+            9
+          ],
+          "rotation": 90
+        }
+      }
+    }
+  ]
+}
