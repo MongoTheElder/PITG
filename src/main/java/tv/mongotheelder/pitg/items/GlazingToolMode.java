@@ -15,7 +15,7 @@ public enum GlazingToolMode implements IStringSerializable {
     }
 
     @Override
-    public String getString() {
+    public String getSerializedName() {
         return name;
     }
 
@@ -33,7 +33,7 @@ public enum GlazingToolMode implements IStringSerializable {
 
     public static GlazingToolMode byName(String name) {
         for (GlazingToolMode mode : GlazingToolMode.values()) {
-            if (mode.getString().toLowerCase().equals(name)) return mode;
+            if (mode.getSerializedName().toLowerCase().equals(name)) return mode;
         }
         return ROTATE;
     }
