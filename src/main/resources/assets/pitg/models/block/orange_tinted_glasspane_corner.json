@@ -1,0 +1,8 @@
+{
+  "parent": "pitg:block/bases/glasspane_corner_base",
+  "textures": {
+    "pane": "pitg:block/orange_tinted_glass_pane",
+    "edge": "pitg:block/orange_tinted_glass_pane",
+    "particle": "#pane"
+  }
+}
