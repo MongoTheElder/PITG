@@ -12,11 +12,11 @@ public class DualGlassPane extends GlassPane {
     @Override
     @SuppressWarnings("deprecated")
     protected VoxelShape[] makeShapes(double paneWidth, double paneThickness, double paneHeight) {
-        VoxelShape south = Block.makeCuboidShape(0.0D, 0.0D, paneWidth-paneThickness, paneWidth, paneHeight, paneWidth);
-        VoxelShape west = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, paneThickness, paneHeight, paneWidth);
-        VoxelShape north = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, paneWidth, paneHeight, paneThickness);
-        VoxelShape east = Block.makeCuboidShape(paneWidth - paneThickness, 0.0D, 0.0D, paneWidth, paneHeight, paneWidth);
-        VoxelShape empty = VoxelShapes.fullCube();
+        VoxelShape south = Block.box(0.0D, 0.0D, paneWidth - paneThickness, paneWidth, paneHeight, paneWidth);
+        VoxelShape west = Block.box(0.0D, 0.0D, 0.0D, paneThickness, paneHeight, paneWidth);
+        VoxelShape north = Block.box(0.0D, 0.0D, 0.0D, paneWidth, paneHeight, paneThickness);
+        VoxelShape east = Block.box(paneWidth - paneThickness, 0.0D, 0.0D, paneWidth, paneHeight, paneWidth);
+        VoxelShape empty = VoxelShapes.block();
         VoxelShape[] shapes = new VoxelShape[]{
                 empty, // 0000
                 VoxelShapes.or(north, south), // 0001
