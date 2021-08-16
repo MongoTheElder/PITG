@@ -1,0 +1,7 @@
+{
+  "parent": "pitg:block/bases/glass_pane_table_base",
+  "textures": {
+    "body": "pitg:block/glass_pane_table_body",
+    "particle": "#body"
+  }
+}
