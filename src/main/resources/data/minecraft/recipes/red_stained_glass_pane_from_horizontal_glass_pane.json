@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "red_stained_glass_pane",
+  "ingredients": [
+    {
+      "item": "pitg:red_plain_horizontal_glasspane"
+    }
+  ],
+  "result": {
+    "item": "minecraft:red_stained_glass_pane"
+  }
+}
