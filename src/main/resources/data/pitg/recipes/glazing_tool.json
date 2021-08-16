@@ -3,10 +3,10 @@
   "group": "tools",
   "ingredients": [
     {
-      "tag": "forge:ingots/iron"
+      "tag": "forge:rods/wooden"
     },
     {
-      "tag": "forge:dyes/green"
+      "tag": "forge:ingots/iron"
     },
     {
       "tag": "forge:glass_panes"

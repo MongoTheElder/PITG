@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "stained_glass_pane",
+  "group": "magenta_stained_glass_pane",
   "ingredients": [
     {
-      "item": "pitg:magenta_stained_glasspane"
+      "item": "minecraft:magenta_stained_glass_pane"
     },
     {
-      "item": "pitg:magenta_stained_glasspane"
+      "item": "minecraft:magenta_stained_glass_pane"
     }
   ],
   "result": {

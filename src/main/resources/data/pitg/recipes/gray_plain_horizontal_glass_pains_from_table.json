@@ -1,0 +1,8 @@
+{
+  "type": "pitg:glass_pane_table",
+  "ingredient": {
+    "tag": "pitg:gray_glass_panes"
+  },
+  "result": "pitg:gray_plain_horizontal_glasspane",
+  "count": 1
+}
