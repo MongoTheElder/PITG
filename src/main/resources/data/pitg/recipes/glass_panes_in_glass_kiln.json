@@ -1,0 +1,8 @@
+{
+  "type": "pitg:glass_kiln",
+  "ingredient": {
+    "tag": "pitg:all_glass_panes"
+  },
+  "result": "minecraft:glass_pane",
+  "count": 1
+}

@@ -1,0 +1,8 @@
+{
+  "type": "pitg:glass_kiln",
+  "ingredient": {
+    "tag": "forge:sand"
+  },
+  "result": "minecraft:glass",
+  "count": 1
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "black_stained_glass_pane",
+  "ingredients": [
+    {
+      "item": "pitg:black_plain_glasspane"
+    }
+  ],
+  "result": {
+    "item": "pitg:black_plain_horizontal_glasspane"
+  }
+}
