@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "pitg:gray_stained_glasspane",
+    "pitg:gray_stained_horizontal_glasspane",
+    "pitg:gray_tinted_glasspane",
+    "pitg:gray_tinted_horizontal_glasspane",
+    "pitg:gray_plain_glasspane",
+    "pitg:gray_plain_horizontal_glasspane",
+    "minecraft:gray_stained_glass_pane"
+  ]
+}

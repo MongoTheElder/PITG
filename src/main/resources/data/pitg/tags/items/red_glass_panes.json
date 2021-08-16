@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "pitg:red_stained_glasspane",
+    "pitg:red_stained_horizontal_glasspane",
+    "pitg:red_tinted_glasspane",
+    "pitg:red_tinted_horizontal_glasspane",
+    "pitg:red_plain_glasspane",
+    "pitg:red_plain_horizontal_glasspane",
+    "minecraft:red_stained_glass_pane"
+  ]
+}
