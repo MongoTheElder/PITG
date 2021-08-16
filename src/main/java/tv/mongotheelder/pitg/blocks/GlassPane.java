@@ -51,21 +51,21 @@ public class GlassPane extends Block implements IWaterLoggable {
         super(properties);
         this.shapes = this.makeShapes(PANE_WIDTH, PANE_THICKNESS, PANE_HEIGHT);
         this.collisionShapes = this.makeShapes(PANE_WIDTH, PANE_THICKNESS, PANE_HEIGHT);
-        this.setDefaultState(this.stateContainer.getBaseState()
-                .with(NORTH, Boolean.FALSE)
-                .with(EAST, Boolean.FALSE)
-                .with(SOUTH, Boolean.FALSE)
-                .with(WEST, Boolean.FALSE)
-                .with(UNBREAKABLE, Boolean.FALSE)
-                .with(WATERLOGGED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(NORTH, Boolean.FALSE)
+                .setValue(EAST, Boolean.FALSE)
+                .setValue(SOUTH, Boolean.FALSE)
+                .setValue(WEST, Boolean.FALSE)
+                .setValue(UNBREAKABLE, Boolean.FALSE)
+                .setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     protected VoxelShape[] makeShapes(double paneWidth, double paneThickness, double paneHeight) {
-        VoxelShape south = Block.makeCuboidShape(0.0D, 0.0D, paneWidth-paneThickness, paneWidth, paneHeight, paneWidth);
-        VoxelShape west = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, paneThickness, paneHeight, paneWidth);
-        VoxelShape north = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, paneWidth, paneHeight, paneThickness);
-        VoxelShape east = Block.makeCuboidShape(paneWidth - paneThickness, 0.0D, 0.0D, paneWidth, paneHeight, paneWidth);
-        VoxelShape empty = VoxelShapes.fullCube();
+        VoxelShape south = Block.box(0.0D, 0.0D, paneWidth - paneThickness, paneWidth, paneHeight, paneWidth);
+        VoxelShape west = Block.box(0.0D, 0.0D, 0.0D, paneThickness, paneHeight, paneWidth);
+        VoxelShape north = Block.box(0.0D, 0.0D, 0.0D, paneWidth, paneHeight, paneThickness);
+        VoxelShape east = Block.box(paneWidth - paneThickness, 0.0D, 0.0D, paneWidth, paneHeight, paneWidth);
+        VoxelShape empty = VoxelShapes.block();
         VoxelShape[] shapes = new VoxelShape[]{
                 empty, // 0000
                 north, // 0001
@@ -88,7 +88,7 @@ public class GlassPane extends Block implements IWaterLoggable {
     }
 
     public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
-        return !state.get(WATERLOGGED);
+        return !state.getValue(WATERLOGGED);
     }
 
     @Override
@@ -105,26 +105,26 @@ public class GlassPane extends Block implements IWaterLoggable {
 
     @SuppressWarnings("deprecation")
     @Override
-    public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
-        return Config.ENABLE_UNBREAKABLE.get() && state.get(UNBREAKABLE) ? -1.0f : 0.3f;
+    public float getDestroyProgress(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
+        return Config.ENABLE_UNBREAKABLE.get() && state.getValue(UNBREAKABLE) ? -1.0f : 0.3f;
     }
 
     protected int getIndex(BlockState state) {
         return this.indexHash.computeIntIfAbsent(state, (blockState) -> {
             int i = 0;
-            if (blockState.get(NORTH)) {
+            if (blockState.getValue(NORTH)) {
                 i |= NORTH_MASK;
             }
 
-            if (blockState.get(EAST)) {
+            if (blockState.getValue(EAST)) {
                 i |= EAST_MASK;
             }
 
-            if (blockState.get(SOUTH)) {
+            if (blockState.getValue(SOUTH)) {
                 i |= SOUTH_MASK;
             }
 
-            if (blockState.get(WEST)) {
+            if (blockState.getValue(WEST)) {
                 i |= WEST_MASK;
             }
 
@@ -135,12 +135,12 @@ public class GlassPane extends Block implements IWaterLoggable {
     @Override
     @SuppressWarnings("deprecation")
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         return false;
     }
 
@@ -149,20 +149,20 @@ public class GlassPane extends Block implements IWaterLoggable {
     public BlockState rotate(BlockState state, Rotation rot) {
         switch (rot) {
             case CLOCKWISE_180:
-                return state.with(NORTH, state.get(SOUTH)).with(EAST, state.get(WEST)).with(SOUTH, state.get(NORTH)).with(WEST, state.get(EAST));
+                return state.setValue(NORTH, state.getValue(SOUTH)).setValue(EAST, state.getValue(WEST)).setValue(SOUTH, state.getValue(NORTH)).setValue(WEST, state.getValue(EAST));
             case COUNTERCLOCKWISE_90:
                 // OK, this is a bit of a hack: COUNTERCLOCKWISE is used to rotate the pane 90 keeping the same style
                 // (N, E, S, W) or (NE, SE, SW, NW)
-                return state.with(NORTH, state.get(WEST))
-                        .with(EAST, state.get(NORTH))
-                        .with(SOUTH, state.get(EAST))
-                        .with(WEST, state.get(SOUTH));
+                return state.setValue(NORTH, state.getValue(WEST))
+                        .setValue(EAST, state.getValue(NORTH))
+                        .setValue(SOUTH, state.getValue(EAST))
+                        .setValue(WEST, state.getValue(SOUTH));
             case CLOCKWISE_90:
                 // Rotate through all 8 facing states (N, NE, E, SE, S, SW, W, NW)
-                return state.with(NORTH, (state.get(WEST) || state.get(NORTH)) && !(state.get(EAST) || state.get(SOUTH)))
-                        .with(EAST, (state.get(EAST) || state.get(NORTH)) && !(state.get(WEST) || state.get(SOUTH)))
-                        .with(SOUTH, (state.get(EAST) || state.get(SOUTH)) && !(state.get(WEST) || state.get(NORTH)))
-                        .with(WEST, (state.get(WEST) || state.get(SOUTH)) && !(state.get(EAST) || state.get(NORTH)));
+                return state.setValue(NORTH, (state.getValue(WEST) || state.getValue(NORTH)) && !(state.getValue(EAST) || state.getValue(SOUTH)))
+                        .setValue(EAST, (state.getValue(EAST) || state.getValue(NORTH)) && !(state.getValue(WEST) || state.getValue(SOUTH)))
+                        .setValue(SOUTH, (state.getValue(EAST) || state.getValue(SOUTH)) && !(state.getValue(WEST) || state.getValue(NORTH)))
+                        .setValue(WEST, (state.getValue(WEST) || state.getValue(SOUTH)) && !(state.getValue(EAST) || state.getValue(NORTH)));
             default:
                 return state;
         }
@@ -173,9 +173,9 @@ public class GlassPane extends Block implements IWaterLoggable {
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         switch (mirrorIn) {
             case LEFT_RIGHT:
-                return state.with(NORTH, state.get(SOUTH)).with(SOUTH, state.get(NORTH));
+                return state.setValue(NORTH, state.getValue(SOUTH)).setValue(SOUTH, state.getValue(NORTH));
             case FRONT_BACK:
-                return state.with(EAST, state.get(WEST)).with(WEST, state.get(EAST));
+                return state.setValue(EAST, state.getValue(WEST)).setValue(WEST, state.getValue(EAST));
             default:
                 return super.mirror(state, mirrorIn);
         }
@@ -192,15 +192,15 @@ public class GlassPane extends Block implements IWaterLoggable {
      */
     public BlockState getStateForPlacement(BlockItemUseContext context) {
 
-        Direction direction = context.getFace();
-        BlockPos blockpos = context.getPos();
+        Direction direction = context.getClickedFace();
+        BlockPos blockpos = context.getClickedPos();
 
         // Determine which sides to include based on click location
         // If placed on the vertical face of a block, suppress including the matching face unless center clicked
-        boolean clickedSouth = ((context.getHitVec().z - (double) blockpos.getZ()) >= (1.0D - CORNER_HITBOX_SIZE)) && (direction != Direction.NORTH);
-        boolean clickedNorth = ((context.getHitVec().z - (double) blockpos.getZ()) <= CORNER_HITBOX_SIZE) && (direction != Direction.SOUTH);
-        boolean clickedEast = ((context.getHitVec().x - (double) blockpos.getX()) >= (1.0D - CORNER_HITBOX_SIZE)) && (direction != Direction.WEST);
-        boolean clickedWest = ((context.getHitVec().x - (double) blockpos.getX()) <= CORNER_HITBOX_SIZE)  && (direction != Direction.EAST);
+        boolean clickedSouth = ((context.getClickLocation().z - (double) blockpos.getZ()) >= (1.0D - CORNER_HITBOX_SIZE)) && (direction != Direction.NORTH);
+        boolean clickedNorth = ((context.getClickLocation().z - (double) blockpos.getZ()) <= CORNER_HITBOX_SIZE) && (direction != Direction.SOUTH);
+        boolean clickedEast = ((context.getClickLocation().x - (double) blockpos.getX()) >= (1.0D - CORNER_HITBOX_SIZE)) && (direction != Direction.WEST);
+        boolean clickedWest = ((context.getClickLocation().x - (double) blockpos.getX()) <= CORNER_HITBOX_SIZE) && (direction != Direction.EAST);
         boolean horizontalFaceClicked = !(clickedNorth || clickedEast || clickedSouth || clickedWest);
 
         // If the center of the face is clicked, default to the predominate horizontal facing direction
@@ -226,18 +226,18 @@ public class GlassPane extends Block implements IWaterLoggable {
             }
         }
 
-        FluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
-        return this.getDefaultState()
-                .with(NORTH, clickedNorth)
-                .with(WEST, clickedWest)
-                .with(SOUTH, clickedSouth)
-                .with(EAST, clickedEast)
-                .with(UNBREAKABLE, false)
-                .with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
+        FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        return this.defaultBlockState()
+                .setValue(NORTH, clickedNorth)
+                .setValue(WEST, clickedWest)
+                .setValue(SOUTH, clickedSouth)
+                .setValue(EAST, clickedEast)
+                .setValue(UNBREAKABLE, false)
+                .setValue(WATERLOGGED, ifluidstate.getType() == Fluids.WATER);
     }
 
     // Register properties for a glass pane
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(NORTH, EAST, WEST, SOUTH, UNBREAKABLE, WATERLOGGED);
     }
 
