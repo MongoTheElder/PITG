@@ -1,6 +1,16 @@
 {
-  "parent": "item/handheld",
+  "parent": "minecraft:item/handheld",
+  "display": {
+    "gui": {
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    }
+  },
   "textures": {
-    "layer0": "pitg:item/dual_blue_stained_glasspane"
+    "layer0": "pitg:block/blue_stained_glass_pane",
+    "layer1": "pitg:item/d"
   }
 }
