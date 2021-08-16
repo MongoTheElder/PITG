@@ -2,26 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "pitg:green_dye"
+      "minecraft:red_stained_glass_pane_from_dual_glass_pane"
     ]
   },
   "criteria": {
-    "has_yellow_dye": {
+    "has_glass": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:yellow_dye"
-          }
-        ]
-      }
-    },
-    "has_blue_dye": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:blue_dye"
+            "item": "minecraft:glass"
           }
         ]
       }
@@ -29,14 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "pitg:green_dye"
+        "recipe": "minecraft:red_stained_glass_pane_from_dual_glass_pane"
       }
     }
   },
   "requirements": [
     [
-      "has_yellow_dye",
-      "has_blue_dye",
+      "has_glass",
       "has_the_recipe"
     ]
   ]
