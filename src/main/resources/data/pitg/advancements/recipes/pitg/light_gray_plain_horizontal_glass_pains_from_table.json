@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pitg:light_gray_plain_horizontal_glass_pains_from_table"
+    ]
+  },
+  "criteria": {
+    "has_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:glass"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pitg:light_gray_plain_horizontal_glass_pains_from_table"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_glass",
+      "has_the_recipe"
+    ]
+  ]
+}
