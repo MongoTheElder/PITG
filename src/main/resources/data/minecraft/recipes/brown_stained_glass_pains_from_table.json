@@ -1,0 +1,8 @@
+{
+  "type": "pitg:glass_pane_table",
+  "ingredient": {
+    "tag": "pitg:brown_glass_panes"
+  },
+  "result": "minecraft:brown_stained_glass_pane",
+  "count": 1
+}

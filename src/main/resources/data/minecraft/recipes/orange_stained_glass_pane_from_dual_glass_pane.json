@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "orange_stained_glass_pane",
+  "ingredients": [
+    {
+      "item": "pitg:orange_plain_dualglasspane"
+    }
+  ],
+  "result": {
+    "item": "minecraft:orange_stained_glass_pane",
+    "count": 2
+  }
+}
