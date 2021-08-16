@@ -2,162 +2,84 @@
   "multipart": [
     {
       "when": {
-        "north": true
+        "north": "true",
+        "west": "false",
+        "east": "false"
       },
       "apply": {
-        "model": "pitg:block/white_stained_glasspane"
+        "model": "pitg:block/white_stained_glasspane_single"
       }
     },
     {
       "when": {
-        "east": true
+        "east": "true",
+        "north": "false",
+        "south": "false"
       },
       "apply": {
-        "model": "pitg:block/white_stained_glasspane",
+        "model": "pitg:block/white_stained_glasspane_single",
         "y": 90
       }
     },
     {
       "when": {
-        "south": true
+        "south": "true",
+        "west": "false",
+        "east": "false"
       },
       "apply": {
-        "model": "pitg:block/white_stained_glasspane",
+        "model": "pitg:block/white_stained_glasspane_single",
         "y": 180
       }
     },
     {
       "when": {
-        "west": true
+        "west": "true",
+        "north": "false",
+        "south": "false"
       },
       "apply": {
-        "model": "pitg:block/white_stained_glasspane",
+        "model": "pitg:block/white_stained_glasspane_single",
         "y": 270
       }
     },
     {
       "when": {
-        "north": true,
-        "west": false
+        "north": "true",
+        "east": "true"
       },
       "apply": {
-        "model": "pitg:block/white_stained_glasspane_edge_left"
+        "model": "pitg:block/white_stained_glasspane_corner"
       }
     },
     {
       "when": {
-        "north": true,
-        "east": false
+        "east": "true",
+        "south": "true"
       },
       "apply": {
-        "model": "pitg:block/white_stained_glasspane_edge_right"
-      }
-    },
-    {
-      "when": {
-        "west": false,
-        "south": true
-      },
-      "apply": {
-        "model": "pitg:block/white_stained_glasspane_edge_right",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "east": false,
-        "south": true
-      },
-      "apply": {
-        "model": "pitg:block/white_stained_glasspane_edge_left",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "east": true,
-        "south": false
-      },
-      "apply": {
-        "model": "pitg:block/white_stained_glasspane_edge_right",
+        "model": "pitg:block/white_stained_glasspane_corner",
         "y": 90
       }
     },
     {
       "when": {
-        "north": false,
-        "east": true
+        "south": "true",
+        "west": "true"
       },
       "apply": {
-        "model": "pitg:block/white_stained_glasspane_edge_left",
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "west": true,
-        "south": false
-      },
-      "apply": {
-        "model": "pitg:block/white_stained_glasspane_edge_left",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "west": true,
-        "north": false
-      },
-      "apply": {
-        "model": "pitg:block/white_stained_glasspane_edge_right",
-        "y": 270
-      }
-    },
-   {
-      "when": {
-        "OR": 
-          [{ "north": true},{
-          "west": true}]
-        
-      },
-      "apply": {
-        "model": "pitg:block/white_stained_glasspane_corners"
-      }
-    },
-    {
-      "when": {
-        "OR": [{
-          "north": true},{
-          "east": true}]
-        
-      },
-      "apply": {
-        "model": "pitg:block/white_stained_glasspane_corners",
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "OR": [{
-          "west": true},{
-          "south": true}]
-        
-      },
-      "apply": {
-        "model": "pitg:block/white_stained_glasspane_corners",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "OR": [{
-          "east": true},{
-          "south": true}]
-        
-      },
-      "apply": {
-        "model": "pitg:block/white_stained_glasspane_corners",
+        "model": "pitg:block/white_stained_glasspane_corner",
         "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "pitg:block/white_stained_glasspane_corner",
+        "y": 270
       }
     }
   ]

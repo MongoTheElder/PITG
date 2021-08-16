@@ -2,48 +2,71 @@
   "multipart": [
     {
       "when": {
-        "OR": [{
-          "north": "true"},{
-          "south": "true"
-        }]
+        "north": "true"
       },
       "apply": {
-        "model": "pitg:block/red_stained_glasspane"
+        "model": "pitg:block/red_stained_dualglasspane_side"
       }
     },
     {
       "when": {
-        "OR": [{
-          "west": "true"},{
-          "east": "true"
-        }]
+        "north": "true"
       },
       "apply": {
-        "model": "pitg:block/red_stained_glasspane",
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "OR": [{
-          "north": "true"},{
-          "south": "true"
-        }]
-      },
-      "apply": {
-        "model": "pitg:block/red_stained_glasspane",
+        "model": "pitg:block/red_stained_dualglasspane_side",
         "y": 180
       }
     },
     {
       "when": {
-        "OR": [{
-          "west": "true"},{
-          "east": "true"
-        }]
+        "south": "true"
       },
       "apply": {
-        "model": "pitg:block/red_stained_glasspane",
+        "model": "pitg:block/red_stained_dualglasspane_side"
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "pitg:block/red_stained_dualglasspane_side",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "pitg:block/red_stained_dualglasspane_side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "pitg:block/red_stained_dualglasspane_side",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "pitg:block/red_stained_dualglasspane_side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "pitg:block/red_stained_dualglasspane_side",
         "y": 270
       }
     },
@@ -53,7 +76,7 @@
         "east": "false"
       },
       "apply": {
-        "model": "pitg:block/red_stained_glasspane_edge_left"
+        "model": "pitg:block/red_stained_dualglasspane_left_edge"
       }
     },
     {
@@ -62,46 +85,7 @@
         "east": "false"
       },
       "apply": {
-        "model": "pitg:block/red_stained_glasspane_edge_left",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "north": "false",
-        "south": "false"
-      },
-      "apply": {
-        "model": "pitg:block/red_stained_glasspane_edge_left",
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "north": "false",
-        "south": "false"
-      },
-      "apply": {
-        "model": "pitg:block/red_stained_glasspane_edge_left",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "west": "false",
-        "east": "false"
-      },
-      "apply": {
-        "model": "pitg:block/red_stained_glasspane_edge_right"
-      }
-    },
-    {
-      "when": {
-        "west": "false",
-        "east": "false"
-      },
-      "apply": {
-        "model": "pitg:block/red_stained_glasspane_edge_right",
+        "model": "pitg:block/red_stained_dualglasspane_left_edge",
         "y": 180
       }
     },
@@ -111,7 +95,7 @@
         "south": "false"
       },
       "apply": {
-        "model": "pitg:block/red_stained_glasspane_edge_right",
+        "model": "pitg:block/red_stained_dualglasspane_left_edge",
         "y": 90
       }
     },
@@ -121,30 +105,69 @@
         "south": "false"
       },
       "apply": {
-        "model": "pitg:block/red_stained_glasspane_edge_right",
+        "model": "pitg:block/red_stained_dualglasspane_left_edge",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "east": "false",
+        "west": "false"
+      },
+      "apply": {
+        "model": "pitg:block/red_stained_dualglasspane_right_edge"
+      }
+    },
+    {
+      "when": {
+        "east": "false",
+        "west": "false"
+      },
+      "apply": {
+        "model": "pitg:block/red_stained_dualglasspane_right_edge",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "pitg:block/red_stained_dualglasspane_right_edge",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "pitg:block/red_stained_dualglasspane_right_edge",
         "y": 270
       }
     },
     {
       "apply": {
-        "model": "pitg:block/red_stained_glasspane_corners"
+        "model": "pitg:block/red_stained_dualglasspane_corner"
       }
     },
     {
       "apply": {
-        "model": "pitg:block/red_stained_glasspane_corners",
+        "model": "pitg:block/red_stained_dualglasspane_corner",
         "y": 90
       }
     },
     {
       "apply": {
-        "model": "pitg:block/red_stained_glasspane_corners",
+        "model": "pitg:block/red_stained_dualglasspane_corner",
         "y": 270
       }
     },
     {
       "apply": {
-        "model": "pitg:block/red_stained_glasspane_corners",
+        "model": "pitg:block/red_stained_dualglasspane_corner",
         "y": 180
       }
     }
