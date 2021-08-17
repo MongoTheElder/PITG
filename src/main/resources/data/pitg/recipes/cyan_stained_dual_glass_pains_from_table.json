@@ -1,0 +1,8 @@
+{
+  "type": "pitg:glass_pane_table",
+  "ingredient": {
+    "tag": "pitg:cyan_dual_glass_panes"
+  },
+  "result": "pitg:cyan_stained_dualglasspane",
+  "count": 1
+}
