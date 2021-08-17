@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "brown_dual_stained_glass_pane",
+  "ingredients": [
+    {
+      "item": "pitg:brown_stained_glasspane"
+    },
+    {
+      "item": "pitg:brown_stained_glasspane"
+    }
+  ],
+  "result": {
+    "item": "pitg:brown_stained_dualglasspane"
+  }
+}
