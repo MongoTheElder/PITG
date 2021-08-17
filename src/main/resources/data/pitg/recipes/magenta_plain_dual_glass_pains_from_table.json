@@ -1,0 +1,8 @@
+{
+  "type": "pitg:glass_pane_table",
+  "ingredient": {
+    "tag": "pitg:magenta_dual_glass_panes"
+  },
+  "result": "pitg:magenta_plain_dualglasspane",
+  "count": 1
+}
