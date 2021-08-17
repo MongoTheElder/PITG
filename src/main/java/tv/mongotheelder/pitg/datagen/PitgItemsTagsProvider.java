@@ -39,6 +39,11 @@ public class PitgItemsTagsProvider extends ItemTagsProvider {
                     .add(Registration.PLAIN_HORIZONTAL_GLASS_PANE_ITEMS.get(color).get())
                     .add(PitgRecipeProvider.lookupVanillaPaneBlock(color).asItem());
             tag(allTag).addTags(newColorTag);
+            ITag.INamedTag<Item> newDualColorTag = ItemTags.bind("pitg:" + color + "_dual_glass_panes");
+            tag(newDualColorTag)
+                    .add(Registration.STAINED_DUAL_GLASS_PANE_ITEMS.get(color).get())
+                    .add(Registration.TINTED_DUAL_GLASS_PANE_ITEMS.get(color).get())
+                    .add(Registration.PLAIN_DUAL_GLASS_PANE_ITEMS.get(color).get());
         }
 
         ITag.INamedTag<Item> horizontalTag = ItemTags.bind("pitg:horizontal_glass_panes");
