@@ -59,7 +59,7 @@ public class PitgRecipeProvider extends RecipeProvider {
     }
 
     private void dualGlassPanesInKiln(Consumer<IFinishedRecipe> consumer) {
-        kilnBuilder(Ingredient.of(DUAL_GLASS_PANE_TAG), Items.GLASS_PANE, 2)
+        kilnBuilder(Ingredient.of(DUAL_GLASS_PANE_TAG), Registration.DUAL_GLASS_PANE.get(), 1)
                 .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
                 .save(consumer, modLoc("dual_glass_panes_in_glass_kiln"));
     }
@@ -74,12 +74,6 @@ public class PitgRecipeProvider extends RecipeProvider {
         kilnBuilder(Ingredient.of(Tags.Items.GLASS), Blocks.GLASS, 1)
                 .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
                 .save(consumer, modLoc("glass_in_glass_kiln"));
-    }
-
-    private void glassPanesInTable(Consumer<IFinishedRecipe> consumer) {
-        kilnBuilder(Ingredient.of(ALL_GLASS_PANE_TAG), Items.GLASS_PANE, 1)
-                .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
-                .save(consumer, modLoc("glass_panes_in_glass_kiln"));
     }
 
     private void glazingToolRecipe(Consumer<IFinishedRecipe> consumer, String group) {
@@ -122,6 +116,7 @@ public class PitgRecipeProvider extends RecipeProvider {
         glassPaneRecipe(consumer, Registration.HORIZONTAL_GLASS_PANE.get(), Registration.GLASS_PANE.get(), "glass_pane", 1, 1);
         glassPaneRecipe(consumer, Blocks.GLASS_PANE, Registration.HORIZONTAL_GLASS_PANE.get(), "glass_pane", 1, 1, "_from_horizontal_glass_pane");
         glassPaneRecipe(consumer, Registration.DUAL_GLASS_PANE.get(), Registration.GLASS_PANE.get(), "glass_pane", 2, 1);
+        glassPaneRecipe(consumer, Registration.DUAL_GLASS_PANE.get(), Blocks.GLASS_PANE, "glass_pane", 2, 1, "_from_vanilla_glass_pane");
         glassPaneRecipe(consumer, Registration.GLASS_PANE.get(), Registration.DUAL_GLASS_PANE.get(), "glass_pane", 1, 2, "_from_dual_glass_pane");
         createTableRecipes(consumer);
         glazingToolRecipe(consumer, "tools");
@@ -131,7 +126,6 @@ public class PitgRecipeProvider extends RecipeProvider {
         dualGlassPanesInKiln(consumer);
         sandInKiln(consumer);
         glassInKiln(consumer);
-        glassPanesInTable(consumer);
         for (DyeColor color : DyeColor.values()) {
             glassPaneRecipe(consumer, Registration.STAINED_GLASS_PANES.get(color).get(), lookupVanillaPaneBlock(color), color + "_stained_glass_pane", 1, 1);
             glassPaneRecipe(consumer, Registration.STAINED_HORIZONTAL_GLASS_PANES.get(color).get(), Registration.STAINED_GLASS_PANES.get(color).get(), color + "_stained_glass_pane", 1, 1);
@@ -142,6 +136,7 @@ public class PitgRecipeProvider extends RecipeProvider {
             glassPaneRecipe(consumer, lookupVanillaPaneBlock(color), Registration.PLAIN_HORIZONTAL_GLASS_PANES.get(color).get(), color + "_stained_glass_pane", 1, 1, "_from_horizontal_glass_pane");
 
             glassPaneRecipe(consumer, Registration.STAINED_DUAL_GLASS_PANES.get(color).get(), lookupVanillaPaneBlock(color), color + "_dual_stained_glass_pane", 2, 1);
+            glassPaneRecipe(consumer, Registration.STAINED_DUAL_GLASS_PANES.get(color).get(), Registration.STAINED_GLASS_PANES.get(color).get(), color + "_dual_stained_glass_pane", 2, 1, "_from_stained_glass_panes");
             glassPaneRecipe(consumer, Registration.TINTED_DUAL_GLASS_PANES.get(color).get(), Registration.STAINED_DUAL_GLASS_PANES.get(color).get(), color + "_dual_stained_glass_pane", 1, 1);
             glassPaneRecipe(consumer, Registration.PLAIN_DUAL_GLASS_PANES.get(color).get(), Registration.TINTED_DUAL_GLASS_PANES.get(color).get(), color + "_dual_stained_glass_pane", 1, 1);
             glassPaneRecipe(consumer, lookupVanillaPaneBlock(color), Registration.PLAIN_DUAL_GLASS_PANES.get(color).get(), color + "_dual_stained_glass_pane", 1, 2, "_from_dual_glass_pane");
@@ -189,28 +184,40 @@ public class PitgRecipeProvider extends RecipeProvider {
     }
 
     public void createColoredTableRecipes(Consumer<IFinishedRecipe> consumer, DyeColor color) {
-        ITag<Item> inputs = ItemTags.bind("pitg:" + color + "_glass_panes");
-        glassPaneTableBuilder(Ingredient.of(inputs), lookupVanillaPaneBlock(color), 1)
+        ITag<Item> panes = ItemTags.bind("pitg:" + color + "_glass_panes");
+        glassPaneTableBuilder(Ingredient.of(panes), lookupVanillaPaneBlock(color), 1)
                 .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
                 .save(consumer, color + "_stained_glass_pains_from_table");
-        glassPaneTableBuilder(Ingredient.of(inputs), Registration.STAINED_GLASS_PANES.get(color).get(), 1)
+        glassPaneTableBuilder(Ingredient.of(panes), Registration.STAINED_GLASS_PANES.get(color).get(), 1)
                 .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
                 .save(consumer, modLoc(color + "_stained_glass_pains_from_table"));
-        glassPaneTableBuilder(Ingredient.of(inputs), Registration.PLAIN_GLASS_PANES.get(color).get(), 1)
+        glassPaneTableBuilder(Ingredient.of(panes), Registration.PLAIN_GLASS_PANES.get(color).get(), 1)
                 .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
                 .save(consumer, modLoc(color + "_plain_glass_pains_from_table"));
-        glassPaneTableBuilder(Ingredient.of(inputs), Registration.TINTED_GLASS_PANES.get(color).get(), 1)
+        glassPaneTableBuilder(Ingredient.of(panes), Registration.TINTED_GLASS_PANES.get(color).get(), 1)
                 .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
                 .save(consumer, modLoc(color + "_tinted_glass_pains_from_table"));
-        glassPaneTableBuilder(Ingredient.of(inputs), Registration.STAINED_HORIZONTAL_GLASS_PANES.get(color).get(), 1)
+        glassPaneTableBuilder(Ingredient.of(panes), Registration.STAINED_HORIZONTAL_GLASS_PANES.get(color).get(), 1)
                 .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
                 .save(consumer, modLoc(color + "_stained_horizontal_glass_pains_from_table"));
-        glassPaneTableBuilder(Ingredient.of(inputs), Registration.PLAIN_HORIZONTAL_GLASS_PANES.get(color).get(), 1)
+        glassPaneTableBuilder(Ingredient.of(panes), Registration.PLAIN_HORIZONTAL_GLASS_PANES.get(color).get(), 1)
                 .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
                 .save(consumer, modLoc(color + "_plain_horizontal_glass_pains_from_table"));
-        glassPaneTableBuilder(Ingredient.of(inputs), Registration.TINTED_HORIZONTAL_GLASS_PANES.get(color).get(), 1)
+        glassPaneTableBuilder(Ingredient.of(panes), Registration.TINTED_HORIZONTAL_GLASS_PANES.get(color).get(), 1)
                 .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
                 .save(consumer, modLoc(color + "_tinted_horizontal_glass_pains_from_table"));
+
+        ITag<Item> duelPanes = ItemTags.bind("pitg:" + color + "_dual_glass_panes");
+        glassPaneTableBuilder(Ingredient.of(duelPanes), Registration.STAINED_DUAL_GLASS_PANES.get(color).get(), 1)
+                .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
+                .save(consumer, modLoc(color + "_stained_dual_glass_pains_from_table"));
+        glassPaneTableBuilder(Ingredient.of(duelPanes), Registration.PLAIN_DUAL_GLASS_PANES.get(color).get(), 1)
+                .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
+                .save(consumer, modLoc(color + "_plain_dual_glass_pains_from_table"));
+        glassPaneTableBuilder(Ingredient.of(duelPanes), Registration.TINTED_DUAL_GLASS_PANES.get(color).get(), 1)
+                .unlocks("has_glass", InventoryChangeTrigger.Instance.hasItems(Blocks.GLASS))
+                .save(consumer, modLoc(color + "_tinted_dual_glass_pains_from_table"));
+
     }
 
     public void createTableRecipes(Consumer<IFinishedRecipe> consumer) {
