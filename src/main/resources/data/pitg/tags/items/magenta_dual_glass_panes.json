@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "pitg:magenta_stained_dualglasspane",
+    "pitg:magenta_tinted_dualglasspane",
+    "pitg:magenta_plain_dualglasspane"
+  ]
+}
