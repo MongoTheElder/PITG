@@ -3,6 +3,6 @@
   "ingredient": {
     "tag": "pitg:dual_glass_panes"
   },
-  "result": "minecraft:glass_pane",
-  "count": 2
+  "result": "pitg:dualglasspane",
+  "count": 1
 }
