@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "yellow_stained_glass_pane",
+  "group": "yellow_dual_stained_glass_pane",
   "ingredients": [
     {
       "item": "minecraft:yellow_stained_glass_pane"
