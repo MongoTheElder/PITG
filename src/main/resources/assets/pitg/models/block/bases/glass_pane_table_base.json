@@ -22,6 +22,24 @@
       }
     },
     {
+      "__comment": "Pane",
+      "from": [
+        1,
+        13,
+        1
+      ],
+      "to": [
+        15,
+        13.5,
+        15
+      ],
+      "faces": {
+        "up": {
+          "texture": "#pane"
+        }
+      }
+    },
+    {
       "__comment": "Edge (north)",
       "from": [
         0,
