@@ -18,14 +18,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import tv.mongotheelder.pitg.blocks.*;
-import tv.mongotheelder.pitg.containers.GlassKilnContainer;
 import tv.mongotheelder.pitg.containers.GlassPaneTableContainer;
 import tv.mongotheelder.pitg.items.GlazingTool;
-import tv.mongotheelder.pitg.recipes.GlassKilnRecipe;
-import tv.mongotheelder.pitg.recipes.GlassKilnRecipeSerializer;
 import tv.mongotheelder.pitg.recipes.GlassPaneTableRecipe;
 import tv.mongotheelder.pitg.recipes.GlassPaneTableRecipeSerializer;
-import tv.mongotheelder.pitg.tileentities.GlassKilnTile;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -85,14 +81,6 @@ public class Registration {
 
     public static final RegistryObject<HorizontalGlassPane> HORIZONTAL_GLASS_PANE = BLOCKS.register("horizontal_glasspane", () -> new HorizontalGlassPane(AbstractBlock.Properties.of(Material.GLASS).strength(0.3f).sound(SoundType.GLASS).noOcclusion()));
     public static final RegistryObject<Item> HORIZONTAL_GLASS_PANE_ITEM = ITEMS.register("horizontal_glasspane", () -> new BlockItem(HORIZONTAL_GLASS_PANE.get(), new Item.Properties().tab(ModSetup.ITEM_GROUP)));
-
-    // Glass Kiln
-    public static final RegistryObject<GlassKiln> GLASS_KILN = BLOCKS.register("glass_kiln", () -> new GlassKiln(AbstractBlock.Properties.of(Material.STONE).strength(0.3f).sound(SoundType.STONE)));
-    public static final RegistryObject<Item> GLASS_KILN_ITEM = ITEMS.register("glass_kiln", () -> new BlockItem(GLASS_KILN.get(), new Item.Properties().tab(ModSetup.ITEM_GROUP)));
-    public static final RegistryObject<TileEntityType<GlassKilnTile>> GLASS_KILN_TILE = TILES.register("glass_kiln", () -> TileEntityType.Builder.of(GlassKilnTile::new, GLASS_KILN.get()).build(null));
-    public static final RegistryObject<ContainerType<GlassKilnContainer>> GLASS_KILN_CONTAINER = CONTAINERS.register("glass_kiln", () -> IForgeContainerType.create(GlassKilnContainer::new));
-    public static final IRecipeType<GlassKilnRecipe> GLASS_KILN_TYPE = IRecipeType.register("pitg:glass_kiln");
-    public static final RegistryObject<IRecipeSerializer<?>> GLASS_KILN_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("glass_kiln", () -> new GlassKilnRecipeSerializer<>(GlassKilnRecipe::new, 100));
 
     // Glass Pane Table
     public static final RegistryObject<GlassPaneTable> GLASS_PANE_TABLE = BLOCKS.register("glass_pane_table", () -> new GlassPaneTable(AbstractBlock.Properties.of(Material.STONE).strength(0.3f).sound(SoundType.STONE)));
