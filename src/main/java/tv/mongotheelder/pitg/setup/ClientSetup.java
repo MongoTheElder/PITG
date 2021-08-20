@@ -12,19 +12,18 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import tv.mongotheelder.pitg.Pitg;
 import tv.mongotheelder.pitg.items.GlazingTool;
 import tv.mongotheelder.pitg.items.GlazingToolMode;
-import tv.mongotheelder.pitg.screens.GlassKilnScreen;
 import tv.mongotheelder.pitg.screens.GlassPaneTableScreen;
 
 @Mod.EventBusSubscriber(modid = Pitg.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
 
     public static void init(final FMLClientSetupEvent event) {
-        ScreenManager.register(Registration.GLASS_KILN_CONTAINER.get(), GlassKilnScreen::new);
         ScreenManager.register(Registration.GLASS_PANE_TABLE_CONTAINER.get(), GlassPaneTableScreen::new);
 
         RenderTypeLookup.setRenderLayer(Registration.GLASS_PANE.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(Registration.DUAL_GLASS_PANE.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(Registration.HORIZONTAL_GLASS_PANE.get(), RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(Registration.GLASS_PANE_TABLE.get(), RenderType.translucent());
 
         for (DyeColor color : DyeColor.values()) {
             RenderTypeLookup.setRenderLayer(Registration.STAINED_GLASS_PANES.get(color).get(), RenderType.translucent());
