@@ -1,8 +1,9 @@
 {
-  "type": "pitg:glass_kiln",
+  "type": "minecraft:blasting",
   "ingredient": {
     "tag": "pitg:all_glass_panes"
   },
   "result": "minecraft:glass_pane",
-  "count": 1
+  "experience": 0.0,
+  "cookingtime": 100
 }
