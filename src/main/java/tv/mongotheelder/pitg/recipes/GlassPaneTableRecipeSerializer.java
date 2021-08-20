@@ -9,8 +9,9 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class GlassPaneTableRecipeSerializer<T extends SingleItemRecipe> extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
+public class GlassPaneTableRecipeSerializer<T extends SingleItemRecipe> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
     final GlassPaneTableRecipeSerializer.IRecipeFactory<T> factory;
 
     public GlassPaneTableRecipeSerializer(GlassPaneTableRecipeSerializer.IRecipeFactory<T> p_i50146_1_) {
