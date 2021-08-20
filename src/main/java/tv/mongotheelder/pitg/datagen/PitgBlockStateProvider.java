@@ -4,7 +4,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.DyeColor;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.Half;
-import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -12,7 +11,10 @@ import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import tv.mongotheelder.pitg.Pitg;
-import tv.mongotheelder.pitg.blocks.*;
+import tv.mongotheelder.pitg.blocks.DualGlassPane;
+import tv.mongotheelder.pitg.blocks.GlassPane;
+import tv.mongotheelder.pitg.blocks.GlassPaneTable;
+import tv.mongotheelder.pitg.blocks.HorizontalGlassPane;
 import tv.mongotheelder.pitg.setup.Registration;
 
 import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
@@ -36,29 +38,17 @@ public class PitgBlockStateProvider extends BlockStateProvider {
         return model;
     }
 
-    public BlockModelBuilder makeKilnModel(String modelName, String parent, String textureName) {
+    public BlockModelBuilder makeGlassPaneTableModel(String modelName, String parent, String textureName, String paneName) {
         String modelPath = BLOCK_FOLDER + "/" + modelName;
         String texturePath = BLOCK_FOLDER + "/" + textureName;
-
-        BlockModelBuilder model = models().getBuilder(modelPath);
-
-        model
-                .parent(models().getExistingFile(new ResourceLocation(Pitg.MODID, BLOCK_FOLDER + "/bases/" + parent + "_base")))
-                .texture("body", modLoc("block/glass_kiln_side"))
-                .texture("front", modLoc(texturePath))
-                .texture("particle", "#body");
-        return model;
-    }
-
-    public BlockModelBuilder makeGlassPaneTableModel(String modelName, String parent, String textureName) {
-        String modelPath = BLOCK_FOLDER + "/" + modelName;
-        String texturePath = BLOCK_FOLDER + "/" + textureName;
+        String panePath = BLOCK_FOLDER + "/" + paneName;
 
         BlockModelBuilder model = models().getBuilder(modelPath);
 
         model
                 .parent(models().getExistingFile(new ResourceLocation(Pitg.MODID, BLOCK_FOLDER + "/bases/" + parent + "_base")))
                 .texture("body", modLoc(texturePath))
+                .texture("pane", modLoc(panePath))
                 .texture("particle", "#body");
         return model;
     }
@@ -80,18 +70,6 @@ public class PitgBlockStateProvider extends BlockStateProvider {
         VariantBlockStateBuilder builder = getVariantBuilder(block);
         builder.partialState().with(BlockStateProperties.HALF, Half.TOP).modelForState().modelFile(upper).addModel();
         builder.partialState().with(BlockStateProperties.HALF, Half.BOTTOM).modelForState().modelFile(lower).addModel();
-    }
-
-    public void blockstateGlassKiln(GlassKiln block, BlockModelBuilder lit, BlockModelBuilder normal) {
-        VariantBlockStateBuilder builder = getVariantBuilder(block);
-        builder.partialState().with(BlockStateProperties.LIT, true).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(lit).addModel();
-        builder.partialState().with(BlockStateProperties.LIT, false).with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH).modelForState().modelFile(normal).addModel();
-        builder.partialState().with(BlockStateProperties.LIT, true).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(lit).rotationY(270).addModel();
-        builder.partialState().with(BlockStateProperties.LIT, false).with(BlockStateProperties.HORIZONTAL_FACING, Direction.WEST).modelForState().modelFile(normal).rotationY(270).addModel();
-        builder.partialState().with(BlockStateProperties.LIT, true).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(lit).rotationY(180).addModel();
-        builder.partialState().with(BlockStateProperties.LIT, false).with(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH).modelForState().modelFile(normal).rotationY(180).addModel();
-        builder.partialState().with(BlockStateProperties.LIT, true).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(lit).rotationY(90).addModel();
-        builder.partialState().with(BlockStateProperties.LIT, false).with(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST).modelForState().modelFile(normal).rotationY(90).addModel();
     }
 
     public void blockstateGlassPaneTable(GlassPaneTable block, BlockModelBuilder model) {
@@ -206,14 +184,8 @@ public class PitgBlockStateProvider extends BlockStateProvider {
         blockstateDualGlassPane(block, sideModel, leftModel, rightModel, cornerModel);
     }
 
-    private void buildGlassKilnModels(GlassKiln block) {
-        BlockModelBuilder litModel = makeKilnModel("glass_kiln_lit", "glass_kiln", "glass_kiln_front_lit");
-        BlockModelBuilder normalModel = makeKilnModel("glass_kiln_normal", "glass_kiln", "glass_kiln_front_off");
-        blockstateGlassKiln(block, litModel, normalModel);
-    }
-
     private void buildGlassPaneTableModels(GlassPaneTable block) {
-        BlockModelBuilder model = makeGlassPaneTableModel("glass_pane_table", "glass_pane_table", "glass_pane_table_body");
+        BlockModelBuilder model = makeGlassPaneTableModel("glass_pane_table", "glass_pane_table", "glass_pane_table_body", "purple_stained_glass_pane");
         blockstateGlassPaneTable(block, model);
     }
 
@@ -222,7 +194,6 @@ public class PitgBlockStateProvider extends BlockStateProvider {
         buildGlassPaneModels(Registration.GLASS_PANE.get());
         buildHorizontalGlassPaneModels(Registration.HORIZONTAL_GLASS_PANE.get());
         buildDualGlassPaneModels(Registration.DUAL_GLASS_PANE.get());
-        buildGlassKilnModels(Registration.GLASS_KILN.get());
         buildGlassPaneTableModels(Registration.GLASS_PANE_TABLE.get());
 
         for (DyeColor color : DyeColor.values()) {
