@@ -13,11 +13,19 @@ public class GlassPaneTableRecipe extends SingleItemRecipe {
         super(Registration.GLASS_PANE_TABLE_TYPE, Registration.GLASS_PANE_TABLE_RECIPE_SERIALIZER.get(), p_i50021_1_, p_i50021_2_, ingredient, stack);
     }
 
+    @Override
     public boolean matches(IInventory inventory, World world) {
         return this.ingredient.test(inventory.getItem(0));
     }
 
+    @Override
     public ItemStack getToastSymbol() {
         return new ItemStack(Registration.GLASS_PANE_TABLE.get());
     }
+
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
 }
