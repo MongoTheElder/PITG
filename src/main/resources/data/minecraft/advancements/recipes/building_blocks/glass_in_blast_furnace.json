@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "pitg:glass_panes_in_glass_kiln"
+      "minecraft:glass_in_blast_furnace"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "pitg:glass_panes_in_glass_kiln"
+        "recipe": "minecraft:glass_in_blast_furnace"
       }
     }
   },
