@@ -1,5 +1,6 @@
 {
   "type": "pitg:glass_pane_table",
+  "group": "glass_pane",
   "ingredient": {
     "tag": "pitg:lime_dual_glass_panes"
   },
