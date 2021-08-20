@@ -15,15 +15,13 @@
       ],
       "faces": {
         "north": {
-          "texture": "#pane",
-          "cullface": "north"
+          "texture": "#pane"
         },
         "south": {
           "texture": "#pane"
         },
         "west": {
           "texture": "#edge",
-          "cullface": "west",
           "uv": [
             7,
             0,
@@ -33,7 +31,6 @@
         },
         "east": {
           "texture": "#edge",
-          "cullface": "east",
           "uv": [
             7,
             0,
@@ -43,7 +40,6 @@
         },
         "up": {
           "texture": "#edge",
-          "cullface": "up",
           "uv": [
             7,
             0,
@@ -54,7 +50,6 @@
         },
         "down": {
           "texture": "#edge",
-          "cullface": "down",
           "uv": [
             7,
             0,
