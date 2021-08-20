@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:glass_pain_from_table"
+      "minecraft:dual_glass_panes_in_blast_furnace"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:glass_pain_from_table"
+        "recipe": "minecraft:dual_glass_panes_in_blast_furnace"
       }
     }
   },
