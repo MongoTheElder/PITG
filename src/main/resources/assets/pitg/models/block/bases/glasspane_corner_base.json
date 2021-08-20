@@ -1,9 +1,9 @@
 {
   "ambientocclusion": false,
-  "comment": "NE corner pane (0 rotation)",
+  "__comment": "NE corner pane (0 rotation)",
   "elements": [
     {
-      "comment": "North pane (without NE corner)",
+      "__comment": "North pane (without NE corner)",
       "from": [
         0,
         0,
@@ -16,15 +16,13 @@
       ],
       "faces": {
         "north": {
-          "texture": "#pane",
-          "cullface": "north"
+          "texture": "#pane"
         },
         "south": {
           "texture": "#pane"
         },
         "west": {
           "texture": "#edge",
-          "cullface": "west",
           "uv": [
             7,
             0,
@@ -34,7 +32,6 @@
         },
         "up": {
           "texture": "#edge",
-          "cullface": "up",
           "uv": [
             7,
             0,
@@ -45,7 +42,6 @@
         },
         "down": {
           "texture": "#edge",
-          "cullface": "down",
           "uv": [
             7,
             0,
@@ -57,7 +53,7 @@
       }
     },
     {
-      "comment": "East pane (without NE corner)",
+      "__comment": "East pane (without NE corner)",
       "from": [
         14,
         0,
@@ -70,12 +66,10 @@
       ],
       "faces": {
         "east": {
-          "texture": "#pane",
-          "cullface": "east"
+          "texture": "#pane"
         },
         "south": {
           "texture": "#edge",
-          "cullface": "south",
           "uv": [
             7,
             0,
@@ -88,7 +82,6 @@
         },
         "up": {
           "texture": "#edge",
-          "cullface": "up",
           "uv": [
             7,
             0,
@@ -98,7 +91,6 @@
         },
         "down": {
           "texture": "#edge",
-          "cullface": "down",
           "uv": [
             7,
             0,
@@ -109,7 +101,7 @@
       }
     },
     {
-      "comment": "NE corner",
+      "__comment": "NE corner",
       "from": [
         14,
         0,
@@ -122,16 +114,13 @@
       ],
       "faces": {
         "north": {
-          "texture": "#pane",
-          "cullface": "north"
+          "texture": "#pane"
         },
         "east": {
-          "texture": "#pane",
-          "cullface": "east"
+          "texture": "#pane"
         },
         "up": {
           "texture": "#edge",
-          "cullface": "up",
           "uv": [
             7,
             7,
@@ -142,7 +131,6 @@
         },
         "down": {
           "texture": "#edge",
-          "cullface": "down",
           "uv": [
             7,
             7,
