@@ -1,8 +1,0 @@
-{
-  "parent": "pitg:block/bases/glass_kiln_base",
-  "textures": {
-    "body": "pitg:block/glass_kiln_side",
-    "front": "pitg:block/glass_kiln_front_off",
-    "particle": "#body"
-  }
-}
