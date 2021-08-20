@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "pink_stained_glass_pane",
+  "group": "pink_dual_stained_glass_pane",
   "ingredients": [
     {
       "item": "pitg:pink_plain_dualglasspane"
