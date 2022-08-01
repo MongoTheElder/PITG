@@ -1,9 +1,0 @@
-{
-  "type": "pitg:glass_pane_table",
-  "group": "glass_pane",
-  "ingredient": {
-    "tag": "pitg:yellow_glass_panes"
-  },
-  "result": "pitg:yellow_tinted_glasspane",
-  "count": 1
-}

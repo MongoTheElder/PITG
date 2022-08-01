@@ -1,8 +1,0 @@
-{
-  "parent": "pitg:block/bases/horizontal_glasspane_upper_base",
-  "textures": {
-    "pane": "pitg:block/purple_plain_glass_pane",
-    "edge": "pitg:block/purple_plain_glass_pane",
-    "particle": "#pane"
-  }
-}

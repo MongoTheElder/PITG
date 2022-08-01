@@ -1,8 +1,0 @@
-{
-  "parent": "pitg:block/bases/dualglasspane_right_edge_base",
-  "textures": {
-    "pane": "pitg:block/white_plain_glass_pane",
-    "edge": "pitg:block/white_plain_glass_pane",
-    "particle": "#pane"
-  }
-}

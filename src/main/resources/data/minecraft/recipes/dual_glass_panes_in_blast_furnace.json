@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "pitg:dual_glass_panes"
-  },
-  "result": "pitg:dualglasspane",
-  "experience": 0.0,
-  "cookingtime": 100
-}

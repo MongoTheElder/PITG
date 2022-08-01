@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "pitg:glasspane",
-    "pitg:horizontal_glasspane",
-    "minecraft:glass_pane"
-  ]
-}

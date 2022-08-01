@@ -1,9 +1,0 @@
-{
-  "type": "pitg:glass_pane_table",
-  "group": "glass_pane",
-  "ingredient": {
-    "tag": "pitg:black_glass_panes"
-  },
-  "result": "minecraft:black_stained_glass_pane",
-  "count": 1
-}
